@@ -1,0 +1,45 @@
+// CodeIT — Lead intake database schema.
+//
+// SQLite is used as the default local system of record for simplicity (zero
+// external infra to run this project). For production, swap `provider` to
+// "postgresql" and point DATABASE_URL at a managed Postgres instance — the
+// model below doesn't need to change.
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// One row per lead submission — either the "Get Started" form or the
+// simpler Contact form (see `source`). Our database is the durable system
+// of record — any CRM sync (see lib/ghlSync.ts) is a one-way, best-effort
+// export *from* this table, never the source of truth.
+model Lead {
+  id           String   @id @default(cuid())
+  // A real industry slug (see lib/industries.ts) or "general-inquiry" for
+  // submissions not tied to a specific industry (e.g. the Contact form).
+  industry     String
+  fullName     String
+  email        String
+  // Empty string for sources that don't collect it (e.g. the Contact form).
+  phone        String
+  // Empty string for sources that don't collect it (e.g. the Contact form).
+  businessName String
+  description  String
+  // Industry-specific question/answer pairs, JSON-encoded (Record<string, string>).
+  // Kept as a serialized string rather than modeled columns since the question
+  // set varies per industry — see lib/industryQuestions.ts.
+  answers      String
+  // Which form this lead came in through, e.g. "get-started-form" or
+  // "contact-form" — lets us triage/report on lead origin.
+  source       String   @default("get-started-form")
+
+  // Set once the outbound GoHighLevel sync successfully pushes this lead
+  // externally. Null means "not yet synced" — see lib/ghlSync.ts.
+  crmSyncedAt  DateTime?
+
+  createdAt    DateTime @default(now())
+}
