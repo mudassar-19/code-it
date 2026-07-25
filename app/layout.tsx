@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ThemeScript from "@/components/ThemeScript";
+import { SITE_URL } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,9 +22,44 @@ const fraunces = Fraunces({
   axes: ["opsz"],
 });
 
+const DEFAULT_TITLE = "CodeIT | Web, Mobile & AI Software Development Agency";
+const DEFAULT_DESCRIPTION =
+  "CodeIT is a full-spectrum technology partner building web, mobile, and AI-powered software for growing businesses — custom development meets automation.";
+
+// Shared, sitewide defaults. Every route below defines its own `title` /
+// `description` / `alternates.canonical`, which Next.js's metadata merging
+// replaces these with — this is just the fallback for anything that
+// doesn't (and the base every relative OG/canonical URL resolves against).
 export const metadata: Metadata = {
-  title: "CodeIT",
-  description: "Think, Design, Launch.",
+  metadataBase: new URL(SITE_URL),
+  title: DEFAULT_TITLE,
+  description: DEFAULT_DESCRIPTION,
+  applicationName: "CodeIT",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "CodeIT",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+  },
 };
 
 export default function RootLayout({

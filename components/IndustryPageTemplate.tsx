@@ -188,9 +188,9 @@ export default function IndustryPageTemplate({
             <span className="inline-flex items-center gap-1.5 rounded-full border border-teal/30 bg-light-teal px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal">
               Case Study
             </span>
-            <h3 className="mt-4 font-display text-2xl font-bold text-navy">
+            <h2 className="mt-4 font-display text-2xl font-bold text-navy">
               {detail.caseStudy.title}
-            </h3>
+            </h2>
             <div className="mt-3 flex items-center gap-2 text-teal">
               <TrendingUp className="h-5 w-5" strokeWidth={2} />
               <span className="font-display text-lg font-semibold">

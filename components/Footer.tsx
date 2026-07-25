@@ -19,7 +19,7 @@ export default function Footer() {
           <Link href="/#home" className="flex items-center transition-opacity hover:opacity-80">
             <Image
               src="/images/codeit-web-logo-dark.png"
-              alt={brand.name}
+              alt={`${brand.name} logo`}
               width={855}
               height={292}
               className="h-9 w-auto"

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Hero from "@/sections/Hero";
 import About from "@/sections/About";
 import Services from "@/sections/Services";
@@ -7,11 +8,21 @@ import GetStarted from "@/sections/GetStarted";
 import BookACall from "@/sections/BookACall";
 import Contact from "@/sections/Contact";
 import ShapeDivider from "@/components/ShapeDivider";
+import JsonLd from "@/components/JsonLd";
 import { themeColors } from "@/lib/theme";
+import { buildMetadata, organizationJsonLd } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "CodeIT | Web, Mobile & AI Software Development Agency",
+  description:
+    "CodeIT is a full-spectrum technology partner building web, mobile, and AI-powered software for growing businesses — custom development meets automation.",
+  path: "/",
+});
 
 export default function HomePage() {
   return (
     <main>
+      <JsonLd data={organizationJsonLd()} />
       <Hero />
       <ShapeDivider variant="wave" bgColor={themeColors.background} fillColor={themeColors.navyDeep} />
       <About />

@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import { AlertTriangle } from "lucide-react";
 import { brand } from "@/lib/theme";
 import { contactInfo } from "@/lib/contact";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: `Privacy Policy | ${brand.name}`,
-  description: `How ${brand.name} collects, uses, and protects your information.`,
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Privacy Policy | CodeIT — Data, Cookie & Security Practices",
+  description:
+    "Learn how CodeIT collects, uses, and protects your personal information — including data practices, cookies, third-party services, and your privacy rights.",
+  path: "/privacy",
+});
 
 // PLACEHOLDER / TEMPLATE PRIVACY POLICY.
 // Generic, editable boilerplate covering the standard sections a privacy

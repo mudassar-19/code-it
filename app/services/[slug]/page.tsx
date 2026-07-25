@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import IndustryPageTemplate from "@/components/IndustryPageTemplate";
+import JsonLd from "@/components/JsonLd";
 import { getIndustryBySlug, industries } from "@/lib/industries";
 import { getIndustryDetail } from "@/lib/industryDetails";
+import { breadcrumbJsonLd, buildMetadata, INDUSTRY_SEO, serviceJsonLd } from "@/lib/seo";
 
 type IndustryPageProps = {
   params: { slug: string };
@@ -14,15 +16,22 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: IndustryPageProps): Metadata {
   const industry = getIndustryBySlug(params.slug);
+  const seo = INDUSTRY_SEO[params.slug];
 
-  if (!industry) {
-    return { title: "CodeIT" };
+  if (!industry || !seo) {
+    return buildMetadata({
+      title: "CodeIT | Web, Mobile & AI Software Development Agency",
+      description:
+        "CodeIT is a full-spectrum technology partner building web, mobile, and AI-powered software for growing businesses.",
+      path: "/",
+    });
   }
 
-  return {
-    title: `${industry.name} Solutions | CodeIT`,
-    description: industry.teaser,
-  };
+  return buildMetadata({
+    title: seo.title,
+    description: seo.description,
+    path: `/services/${industry.slug}`,
+  });
 }
 
 export default function IndustryPage({ params }: IndustryPageProps) {
@@ -33,5 +42,22 @@ export default function IndustryPage({ params }: IndustryPageProps) {
     notFound();
   }
 
-  return <IndustryPageTemplate industry={industry} detail={detail} />;
+  return (
+    <>
+      <JsonLd
+        data={serviceJsonLd({
+          industryName: industry.name,
+          description: detail.positioning,
+          path: `/services/${industry.slug}`,
+        })}
+      />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: `${industry.name} Solutions`, path: `/services/${industry.slug}` },
+        ])}
+      />
+      <IndustryPageTemplate industry={industry} detail={detail} />
+    </>
+  );
 }

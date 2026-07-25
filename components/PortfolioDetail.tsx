@@ -123,9 +123,9 @@ function PhaseTimeline({ project }: { project: PortfolioProject }) {
             </div>
             <div className={isLast ? "" : "pb-8"}>
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                <h4 className="font-display text-base font-semibold text-navy">
+                <h3 className="font-display text-base font-semibold text-navy">
                   {phase.title}
-                </h4>
+                </h3>
                 <span className="rounded-full border border-teal/30 bg-light-teal px-2.5 py-0.5 text-xs font-semibold text-teal">
                   {phase.duration}
                 </span>

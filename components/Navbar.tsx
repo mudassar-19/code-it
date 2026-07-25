@@ -31,7 +31,7 @@ export default function Navbar() {
               no JS/state and no flash on theme switch. */}
           <Image
             src="/images/codeit-web-logo.png"
-            alt={brand.name}
+            alt={`${brand.name} logo`}
             width={765}
             height={326}
             priority
@@ -39,7 +39,7 @@ export default function Navbar() {
           />
           <Image
             src="/images/codeit-web-logo-dark.png"
-            alt={brand.name}
+            alt={`${brand.name} logo`}
             width={855}
             height={292}
             priority

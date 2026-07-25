@@ -2,8 +2,14 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PortfolioDetail from "@/components/PortfolioDetail";
 import RelatedProjects from "@/components/RelatedProjects";
-import { brand } from "@/lib/theme";
-import { getProjectSummary, portfolioProjects } from "@/lib/portfolio";
+import JsonLd from "@/components/JsonLd";
+import { portfolioProjects } from "@/lib/portfolio";
+import {
+  breadcrumbJsonLd,
+  buildMetadata,
+  projectPageDescription,
+  projectPageTitle,
+} from "@/lib/seo";
 
 type PortfolioProjectPageProps = {
   params: { slug: string };
@@ -22,13 +28,19 @@ export function generateMetadata({
   const project = portfolioProjects.find((p) => p.slug === params.slug);
 
   if (!project) {
-    return { title: `Portfolio | ${brand.name}` };
+    return buildMetadata({
+      title: "Our Portfolio — Web, Mobile & AI Projects | CodeIT",
+      description:
+        "Browse real-world web development, mobile app, and AI automation projects by CodeIT across every industry we serve.",
+      path: "/portfolio",
+    });
   }
 
-  return {
-    title: `${project.title} | ${brand.name}`,
-    description: getProjectSummary(project),
-  };
+  return buildMetadata({
+    title: projectPageTitle(project.title),
+    description: projectPageDescription(project.description),
+    path: `/portfolio/${project.slug}`,
+  });
 }
 
 export default function PortfolioProjectPage({
@@ -42,6 +54,13 @@ export default function PortfolioProjectPage({
 
   return (
     <main>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Portfolio", path: "/portfolio" },
+          { name: project.title, path: `/portfolio/${project.slug}` },
+        ])}
+      />
       <PortfolioDetail project={project} />
       <RelatedProjects project={project} />
     </main>

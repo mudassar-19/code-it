@@ -1,13 +1,14 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
-import { brand } from "@/lib/theme";
 import PortfolioExplorer from "@/components/PortfolioExplorer";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: `Portfolio | ${brand.name}`,
+export const metadata: Metadata = buildMetadata({
+  title: "Our Portfolio — Web, Mobile & AI Projects | CodeIT",
   description:
-    "Browse example projects across every industry we serve — web, mobile, AI, automation, and more.",
-};
+    "Browse real-world web development, mobile app, and AI automation projects by CodeIT across real estate, medical, hospitality, and more — filter by industry.",
+  path: "/portfolio",
+});
 
 export default function PortfolioPage() {
   return (
@@ -26,6 +27,10 @@ export default function PortfolioPage() {
 
       <section className="bg-section px-6 py-16">
         <div className="mx-auto max-w-7xl">
+          {/* Visually hidden — the filter tabs + grid below don't need a
+              second visible heading under the hero, but skipping straight
+              from H1 to each card's H3 would break heading hierarchy. */}
+          <h2 className="sr-only">All Portfolio Projects</h2>
           <Suspense fallback={null}>
             <PortfolioExplorer />
           </Suspense>

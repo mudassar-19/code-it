@@ -23,8 +23,15 @@ const containerVariants: Variants = {
   },
 };
 
+// `opacity` starts at 1, not 0 — this content (the H1 in particular) is
+// the page's Largest Contentful Paint candidate, and a JS/inline-style
+// opacity animation from 0 means the browser never observes a paintable
+// LCP element until Framer Motion's first tick, which measurably drops
+// LCP tracking entirely (confirmed via Lighthouse + a live LCP
+// PerformanceObserver both reporting no candidate at all). The vertical
+// slide-up motion is kept — only the fade is removed.
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 1, y: 24 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
