@@ -24,18 +24,15 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-light-teal bg-white/90 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link href="/#home" className="flex items-center gap-2.5 transition-opacity hover:opacity-80">
+        <Link href="/#home" className="flex items-center transition-opacity hover:opacity-80">
           <Image
-            src="/images/codeit-logo.png"
+            src="/images/codeit-web-logo.png"
             alt={brand.name}
-            width={500}
-            height={500}
+            width={765}
+            height={326}
             priority
-            className="h-9 w-auto sm:h-10"
+            className="h-9 w-auto sm:h-10 lg:h-12"
           />
-          <span className="font-display text-xl font-semibold tracking-tight text-navy sm:text-2xl">
-            {brand.name}
-          </span>
         </Link>
 
         <ul className="hidden items-center gap-8 lg:flex">
