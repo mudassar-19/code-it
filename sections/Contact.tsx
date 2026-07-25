@@ -14,7 +14,7 @@ export default function Contact() {
 
       <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2">
         <div className="flex flex-col gap-4">
-          <div className="flex items-start gap-4 rounded-2xl border border-light-teal bg-white p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
+          <div className="flex items-start gap-4 rounded-2xl border border-light-teal bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
             <span className="flex h-11 w-11 flex-none items-center justify-center rounded-2xl bg-light-teal text-teal">
               <Phone className="h-5 w-5" strokeWidth={2} />
             </span>
@@ -29,7 +29,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="flex items-start gap-4 rounded-2xl border border-light-teal bg-white p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
+          <div className="flex items-start gap-4 rounded-2xl border border-light-teal bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
             <span className="flex h-11 w-11 flex-none items-center justify-center rounded-2xl bg-light-teal text-teal">
               <Mail className="h-5 w-5" strokeWidth={2} />
             </span>
@@ -44,7 +44,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="flex items-start gap-4 rounded-2xl border border-light-teal bg-white p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
+          <div className="flex items-start gap-4 rounded-2xl border border-light-teal bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
             <span className="flex h-11 w-11 flex-none items-center justify-center rounded-2xl bg-light-teal text-teal">
               <MapPin className="h-5 w-5" strokeWidth={2} />
             </span>
@@ -54,7 +54,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-light-teal bg-white p-5 shadow-soft">
+          <div className="rounded-2xl border border-light-teal bg-card p-5 shadow-soft">
             <p className="text-sm font-semibold text-navy">Follow Us</p>
             <ul className="mt-3 flex flex-wrap gap-3">
               {contactInfo.socials.map((social) => {

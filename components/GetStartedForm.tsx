@@ -83,12 +83,12 @@ function ProgressBar({ step }: { step: Step }) {
 
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
-  return <p className="text-sm text-red-600">{message}</p>;
+  return <p className="text-sm text-error">{message}</p>;
 }
 
 const inputClasses = (hasError: boolean) =>
-  `rounded-xl border px-4 py-2.5 text-navy outline-none transition-[border-color,box-shadow] duration-250 focus:border-primary-blue focus:ring-4 focus:ring-light-cyan/40 ${
-    hasError ? "border-red-400" : "border-light-teal"
+  `rounded-xl border bg-card px-4 py-2.5 text-navy outline-none placeholder:text-text-disabled transition-[border-color,box-shadow] duration-250 focus:border-primary-blue focus:ring-4 focus:ring-light-cyan/40 ${
+    hasError ? "border-error" : "border-light-teal"
   }`;
 
 export default function GetStartedForm() {
@@ -233,7 +233,7 @@ export default function GetStartedForm() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -24 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="rounded-2xl border border-light-teal bg-white p-8 shadow-soft"
+            className="rounded-2xl border border-light-teal bg-card p-8 shadow-soft"
           >
             <h3 className="font-display text-lg font-semibold text-navy">
               What industry is your business in?
@@ -290,7 +290,7 @@ export default function GetStartedForm() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -24 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="rounded-2xl border border-light-teal bg-white p-8 shadow-soft"
+            className="rounded-2xl border border-light-teal bg-card p-8 shadow-soft"
             noValidate
           >
             <div className="mb-6 flex items-center justify-between">
@@ -414,7 +414,7 @@ export default function GetStartedForm() {
                           id={question.id}
                           value={answers[question.id] ?? ""}
                           onChange={(event) => updateAnswer(question.id, event.target.value)}
-                          className={inputClasses(!!errors[question.id]) + " bg-white"}
+                          className={inputClasses(!!errors[question.id])}
                         >
                           <option value="">Select an option</option>
                           {question.options?.map((option) => (
@@ -441,7 +441,7 @@ export default function GetStartedForm() {
             )}
 
             {submitError && (
-              <div className="mt-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+              <div className="mt-6 rounded-xl border border-error/30 bg-error/10 px-4 py-3 text-sm text-error">
                 {submitError}
               </div>
             )}
@@ -465,7 +465,7 @@ export default function GetStartedForm() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="rounded-2xl border border-teal/40 bg-white p-8 text-center shadow-card"
+            className="rounded-2xl border border-teal/40 bg-card p-8 text-center shadow-card"
           >
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-light-teal text-teal">
               <Check className="h-7 w-7" strokeWidth={2.5} />

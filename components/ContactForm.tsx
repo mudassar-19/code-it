@@ -15,12 +15,12 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
-  return <p className="text-sm text-red-600">{message}</p>;
+  return <p className="text-sm text-error">{message}</p>;
 }
 
 const inputClasses = (hasError: boolean) =>
-  `rounded-xl border px-4 py-2.5 text-navy outline-none transition-[border-color,box-shadow] duration-250 focus:border-primary-blue focus:ring-4 focus:ring-light-cyan/40 ${
-    hasError ? "border-red-400" : "border-light-teal"
+  `rounded-xl border bg-card px-4 py-2.5 text-navy outline-none placeholder:text-text-disabled transition-[border-color,box-shadow] duration-250 focus:border-primary-blue focus:ring-4 focus:ring-light-cyan/40 ${
+    hasError ? "border-error" : "border-light-teal"
   }`;
 
 export default function ContactForm() {
@@ -107,7 +107,7 @@ export default function ContactForm() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="rounded-2xl border border-teal/40 bg-white p-8 text-center shadow-card"
+        className="rounded-2xl border border-teal/40 bg-card p-8 text-center shadow-card"
       >
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-light-teal text-teal">
           <Check className="h-6 w-6" strokeWidth={2.5} />
@@ -126,7 +126,7 @@ export default function ContactForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="flex flex-col gap-5 rounded-2xl border border-light-teal bg-white p-8 shadow-soft"
+      className="flex flex-col gap-5 rounded-2xl border border-light-teal bg-card p-8 shadow-soft"
     >
       {/* Honeypot: hidden from real users. See app/api/lead/route.ts. */}
       <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
@@ -184,7 +184,7 @@ export default function ContactForm() {
       </div>
 
       {submitError && (
-        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <div className="rounded-xl border border-error/30 bg-error/10 px-4 py-3 text-sm text-error">
           {submitError}
         </div>
       )}

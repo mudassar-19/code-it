@@ -8,7 +8,7 @@ export default function BookACall() {
       id="book-a-call"
       title="Book a Consultation"
       eyebrow="Free Discovery Call"
-      className="bg-white"
+      className="bg-section"
       align="center"
     >
       <p className="mt-4 max-w-2xl text-center text-lg text-navy/70">

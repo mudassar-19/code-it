@@ -55,7 +55,7 @@ export default function ServicesDropdown() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="absolute left-1/2 top-full z-50 mt-3 w-[36rem] max-w-[90vw] -translate-x-1/2 rounded-2xl border border-light-teal bg-white p-6 shadow-card"
+            className="absolute left-1/2 top-full z-50 mt-3 w-[36rem] max-w-[90vw] -translate-x-1/2 rounded-2xl border border-light-teal bg-card p-6 shadow-card"
           >
             <p className="mb-4 font-display text-xs font-semibold uppercase tracking-wide text-teal">
               Industries We Serve

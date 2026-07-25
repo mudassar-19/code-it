@@ -13,17 +13,17 @@ export default function Footer() {
       />
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <Link href="/#home" className="flex items-center gap-2.5 transition-opacity hover:opacity-80">
+          {/* Footer sits on a dark navy background in both themes, so it
+              always uses the dark-theme logo variant rather than switching
+              with the toggle like the header does. */}
+          <Link href="/#home" className="flex items-center transition-opacity hover:opacity-80">
             <Image
-              src="/images/codeit-logo.png"
+              src="/images/codeit-web-logo-dark.png"
               alt={brand.name}
-              width={500}
-              height={500}
+              width={855}
+              height={292}
               className="h-9 w-auto"
             />
-            <span className="font-display text-xl font-semibold tracking-tight text-white">
-              {brand.name}
-            </span>
           </Link>
         </div>
 

@@ -32,6 +32,20 @@ export const colors = {
 export const brandGradient =
   "linear-gradient(135deg, #22D3FF 0%, #1F6FFF 55%, #1A4DFF 100%)";
 
+// Theme-reactive counterparts to `colors` above, for the few consumers
+// that take a raw CSS color STRING rather than a Tailwind className (e.g.
+// ShapeDivider's bgColor/fillColor props) but still need to repaint when
+// the `.dark` class toggles. `colors` itself stays static hex — Three.js
+// materials (HeroScene) can't react to a DOM class change without extra
+// JS wiring, so those intentionally keep the light-theme values.
+export const themeColors = {
+  navy: "rgb(var(--color-navy))",
+  navyDeep: "rgb(var(--color-navy-deep))",
+  mist: "rgb(var(--color-mist))",
+  background: "rgb(var(--background))", // Hero's own bg -- "same as website background"
+  section: "rgb(var(--color-section))", // regular alternating-section bg (Services, Portfolio, ...)
+} as const;
+
 export const fonts = {
   body: "var(--font-inter)",
   display: "var(--font-fraunces)",

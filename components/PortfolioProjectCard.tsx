@@ -37,12 +37,16 @@ const PortfolioProjectCard = forwardRef<
     >
       <Link
         href={`/portfolio/${project.slug}`}
-        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-light-teal/60 bg-white text-left shadow-soft transition-[box-shadow,border-color] duration-300 hover:border-bright-cyan hover:shadow-glow"
+        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-light-teal/60 bg-card text-left shadow-soft transition-[box-shadow,border-color] duration-300 hover:border-bright-cyan hover:shadow-glow"
       >
         <div className="relative aspect-[4/3] w-full">
           <PortfolioProjectImage image={project.image} />
-          <div className="absolute inset-0 flex items-center justify-center bg-navy/0 opacity-0 transition-all duration-300 group-hover:bg-navy/50 group-hover:opacity-100">
-            <span className="translate-y-2 rounded-full bg-white px-5 py-2 text-sm font-semibold text-navy shadow-card transition-transform duration-300 group-hover:translate-y-0">
+          {/* navy-deep, not navy — this scrim must stay dark in both themes
+              to dim the thumbnail for the white "View Details" pill; `navy`
+              would flip to white in dark mode and wash the image out
+              instead of darkening it. */}
+          <div className="absolute inset-0 flex items-center justify-center bg-navy-deep/0 opacity-0 transition-all duration-300 group-hover:bg-navy-deep/50 group-hover:opacity-100">
+            <span className="translate-y-2 rounded-full bg-white px-5 py-2 text-sm font-semibold text-navy-deep shadow-card transition-transform duration-300 group-hover:translate-y-0">
               View Details
             </span>
           </div>
@@ -50,7 +54,7 @@ const PortfolioProjectCard = forwardRef<
 
         <div className="flex flex-1 flex-col p-6">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-block w-fit rounded-full bg-light-teal px-3 py-1 text-xs font-semibold text-teal">
+            <span className="inline-block w-fit rounded-full border border-teal/30 bg-light-teal px-3 py-1 text-xs font-semibold text-teal">
               {project.industry}
             </span>
             <span className="inline-block w-fit rounded-full bg-navy/5 px-3 py-1 text-xs font-semibold text-navy/70">

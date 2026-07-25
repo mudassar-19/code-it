@@ -64,7 +64,7 @@ export default function PortfolioExplorer() {
               className={`rounded-full border-2 px-4 py-2 text-sm font-semibold transition-colors duration-300 ${
                 isActive
                   ? "border-teal bg-teal text-white"
-                  : "border-light-teal bg-white text-navy/70 hover:border-teal/50 hover:text-navy"
+                  : "border-light-teal bg-card text-navy/70 hover:border-teal/50 hover:text-navy"
               }`}
             >
               {tab.name}

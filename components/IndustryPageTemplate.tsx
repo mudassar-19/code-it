@@ -49,7 +49,7 @@ export default function IndustryPageTemplate({
             </Link>
             <Link
               href="/#book-a-call"
-              className="w-full rounded-2xl border-2 border-white px-8 py-4 text-center font-semibold text-white transition-colors duration-250 hover:bg-white hover:text-navy sm:w-auto"
+              className="w-full rounded-2xl border-2 border-white px-8 py-4 text-center font-semibold text-white transition-colors duration-250 hover:bg-white hover:text-navy-deep sm:w-auto"
             >
               Book a Consultation
             </Link>
@@ -58,7 +58,7 @@ export default function IndustryPageTemplate({
       </section>
 
       {/* Common Challenges */}
-      <section className="bg-white px-6 py-20">
+      <section className="bg-section px-6 py-20">
         <div className="mx-auto max-w-4xl">
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
@@ -119,7 +119,7 @@ export default function IndustryPageTemplate({
                   ease: "easeOut",
                   delay: index * 0.08,
                 }}
-                className="flex items-start gap-3 rounded-2xl border border-light-teal/60 bg-white p-5 shadow-soft"
+                className="flex items-start gap-3 rounded-2xl border border-light-teal/60 bg-card p-5 shadow-soft"
               >
                 <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-light-teal text-teal">
                   <Check className="h-4 w-4" strokeWidth={2.5} />
@@ -132,7 +132,7 @@ export default function IndustryPageTemplate({
       </section>
 
       {/* Innovative Ideas */}
-      <section className="bg-white px-6 py-20">
+      <section className="bg-section px-6 py-20">
         <div className="mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -184,8 +184,8 @@ export default function IndustryPageTemplate({
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div className="rounded-2xl bg-white p-8 shadow-card sm:p-10">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-light-teal px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal">
+          <div className="rounded-2xl bg-card p-8 shadow-card sm:p-10">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-teal/30 bg-light-teal px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal">
               Case Study
             </span>
             <h3 className="mt-4 font-display text-2xl font-bold text-navy">

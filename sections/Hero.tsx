@@ -64,7 +64,7 @@ export default function Hero() {
     <MotionConfig reducedMotion="user">
       <section
         id="home"
-        className="scroll-mt-header relative flex min-h-screen items-center overflow-hidden bg-white pt-20"
+        className="scroll-mt-header relative flex min-h-screen items-center overflow-hidden bg-white pt-20 dark:bg-navy-deep"
       >
         <div className="mx-auto grid w-full max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:gap-8">
           <motion.div
@@ -91,7 +91,7 @@ export default function Hero() {
 
             <motion.p
               variants={itemVariants}
-              className="mx-auto mt-6 max-w-2xl text-lg text-navy/70 sm:text-xl lg:mx-0"
+              className="mx-auto mt-6 max-w-2xl text-lg text-navy/70 dark:text-text-secondary sm:text-xl lg:mx-0"
             >
               CodeIT is a full-spectrum technology and growth
               partner — building the web, mobile, AI, and cloud systems that
@@ -111,7 +111,7 @@ export default function Hero() {
               </a>
               <a
                 href="#book-a-call"
-                className="w-full rounded-2xl border-2 border-primary-blue bg-white px-8 py-4 text-center font-semibold text-primary-blue transition-colors duration-250 hover:bg-soft-blue sm:w-auto"
+                className="w-full rounded-2xl border-2 border-primary-blue bg-white px-8 py-4 text-center font-semibold text-primary-blue transition-colors duration-250 hover:bg-soft-blue dark:border-white dark:bg-transparent dark:text-white sm:w-auto"
               >
                 Book a Consultation
               </a>

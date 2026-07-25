@@ -30,7 +30,7 @@ export default function Portfolio() {
       id="portfolio"
       title="Portfolio"
       eyebrow="Proof of Work"
-      className="bg-white"
+      className="bg-section"
     >
       <p className="mt-4 max-w-3xl text-lg text-navy/70">
         A sample of the kind of systems we build across industries — view a

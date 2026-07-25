@@ -23,7 +23,7 @@ export default function RelevantProjectsSection({
   if (projects.length === 0) return null;
 
   return (
-    <section className="bg-white px-6 py-20">
+    <section className="bg-section px-6 py-20">
       <div className="mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -53,9 +53,9 @@ export default function RelevantProjectsSection({
                 delay: index * 0.1,
               }}
               whileHover={{ y: -6 }}
-              className="flex flex-col rounded-2xl border border-light-teal/60 bg-white p-6 shadow-soft transition-[box-shadow,border-color] duration-300 hover:border-bright-cyan hover:shadow-glow"
+              className="flex flex-col rounded-2xl border border-light-teal/60 bg-card p-6 shadow-soft transition-[box-shadow,border-color] duration-300 hover:border-bright-cyan hover:shadow-glow"
             >
-              <span className="inline-block w-fit rounded-full bg-light-teal px-3 py-1 text-xs font-semibold text-teal">
+              <span className="inline-block w-fit rounded-full border border-teal/30 bg-light-teal px-3 py-1 text-xs font-semibold text-teal">
                 {project.techCategory}
               </span>
               <h3 className="mt-3 font-display text-base font-semibold leading-snug text-navy">

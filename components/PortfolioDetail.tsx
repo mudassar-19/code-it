@@ -75,7 +75,7 @@ function PhaseTimeline({ project }: { project: PortfolioProject }) {
         return (
           <li key={phase.title} className="flex gap-4">
             <div className="flex flex-none flex-col items-center">
-              <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full border-2 border-teal bg-white text-xs font-bold text-teal">
+              <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full border-2 border-teal bg-card text-xs font-bold text-teal">
                 {index + 1}
               </span>
               {!isLast && <span className="w-0.5 flex-1 bg-light-teal" />}
@@ -85,7 +85,7 @@ function PhaseTimeline({ project }: { project: PortfolioProject }) {
                 <h3 className="font-display text-base font-semibold text-navy">
                   {phase.title}
                 </h3>
-                <span className="rounded-full bg-light-teal px-2.5 py-0.5 text-xs font-semibold text-teal">
+                <span className="rounded-full border border-teal/30 bg-light-teal px-2.5 py-0.5 text-xs font-semibold text-teal">
                   {phase.duration}
                 </span>
               </div>
@@ -137,7 +137,7 @@ export default function PortfolioDetail({ project }: PortfolioDetailProps) {
         <div className="mx-auto max-w-5xl">
           {/* 1. Project Overview */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-block w-fit rounded-full bg-light-teal px-3 py-1 text-xs font-semibold text-teal">
+            <span className="inline-block w-fit rounded-full border border-teal/30 bg-light-teal px-3 py-1 text-xs font-semibold text-teal">
               {industry}
             </span>
             <span className="inline-block w-fit rounded-full bg-navy/5 px-3 py-1 text-xs font-semibold text-navy/70">
@@ -223,7 +223,7 @@ export default function PortfolioDetail({ project }: PortfolioDetailProps) {
                 {technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="rounded-full border border-light-teal bg-white px-3.5 py-1.5 text-sm font-medium text-navy"
+                    className="rounded-full border border-light-teal bg-card px-3.5 py-1.5 text-sm font-medium text-navy"
                   >
                     {tech}
                   </span>
@@ -236,7 +236,7 @@ export default function PortfolioDetail({ project }: PortfolioDetailProps) {
           {prosAndCons && (
             <Section title="Pros & Cons" icon={CheckCircle2}>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                <div className="rounded-xl border border-light-teal/60 bg-white p-5">
+                <div className="rounded-xl border border-light-teal/60 bg-card p-5">
                   <p className="flex items-center gap-2 text-sm font-semibold text-navy">
                     <ThumbsUp className="h-4 w-4 text-teal" strokeWidth={2} />
                     Pros
@@ -252,7 +252,7 @@ export default function PortfolioDetail({ project }: PortfolioDetailProps) {
                     ))}
                   </ul>
                 </div>
-                <div className="rounded-xl border border-light-teal/60 bg-white p-5">
+                <div className="rounded-xl border border-light-teal/60 bg-card p-5">
                   <p className="flex items-center gap-2 text-sm font-semibold text-navy">
                     <ThumbsDown className="h-4 w-4 text-navy/50" strokeWidth={2} />
                     Cons

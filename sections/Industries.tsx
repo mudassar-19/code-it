@@ -89,10 +89,14 @@ export default function Industries() {
     }
   };
 
+  // The section is deliberately one shade lighter than navy-deep's dark
+  // value (#050816) in dark theme specifically, so the industry cards below
+  // — which are darkened *relative to their section* — have somewhere
+  // darker to sit without going past the palette's actual darkest tone.
   return (
     <section
       id="industries"
-      className="scroll-mt-header relative overflow-hidden bg-navy-deep py-24 lg:py-32"
+      className="scroll-mt-header relative overflow-hidden bg-navy-deep py-24 dark:bg-[#0B132B] lg:py-32"
     >
       <div
         aria-hidden="true"

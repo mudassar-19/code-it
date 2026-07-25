@@ -56,11 +56,14 @@ const EDGES: Edge[] = [
 const NODE_INDEX = new Map(NODES.map((node, i) => [node.id, i]));
 
 const TEAL = new THREE.Color(colors.teal);
-const NAVY = new THREE.Color(colors.navy);
+// A vivid blue rather than `colors.navy` (near-black) — the canvas sits on
+// a dark background in dark theme too, and near-black nodes would vanish
+// against it. `darkBlue` reads clearly against both a light and dark hero.
+const NAVY = new THREE.Color(colors.darkBlue);
 const MAX_WINGSPAN = Math.max(...NODES.map((node) => Math.abs(node.position[0])));
 
-// Teal at the wingtips fading to navy through the spine — the brand
-// teal/navy gradient the cluster is meant to read as.
+// Bright cyan at the wingtips fading to a deep royal blue through the
+// spine — the brand gradient the cluster is meant to read as.
 function colorForNode(position: Point): THREE.Color {
   const t = MAX_WINGSPAN === 0 ? 0 : Math.abs(position[0]) / MAX_WINGSPAN;
   return NAVY.clone().lerp(TEAL, t);

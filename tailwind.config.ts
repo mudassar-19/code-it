@@ -1,6 +1,16 @@
 import type { Config } from "tailwindcss";
 
+// Every color below is `rgb(var(--x) / <alpha-value>)`, not a plain hex —
+// this is what lets a single className (e.g. `text-navy`, `border-light-teal/60`)
+// keep working with Tailwind's opacity modifiers AND automatically repoint
+// to the dark-theme value once `.dark` is on <html>. The actual R G B
+// triplets for both themes live in app/globals.css (:root vs .dark).
+function withOpacity(variable: string) {
+  return `rgb(var(${variable}) / <alpha-value>)`;
+}
+
 const config: Config = {
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -18,25 +28,33 @@ const config: Config = {
         // the specific brand moments (gradients, focus rings, hover glow)
         // that need a color the old palette didn't have a slot for.
         // ---------------------------------------------------------------
-        navy: "#102A43", // was #1B2A4A -> brand "Primary Text"
-        "navy-deep": "#071326", // was #121D36 -> brand "Dark Navy" (section bg)
-        "navy-section": "#0D1B3D", // NEW -> brand "Section Navy" (cards on dark sections)
-        teal: "#1F6FFF", // was #16A6A0 -> brand "Primary Blue" (primary accent/CTA)
-        "light-teal": "#E3EDF8", // was #D6F0EE -> brand "Border"
-        mist: "#F8FBFF", // was #EFF9F8 -> brand "Light Background"
-        orange: "#3B82F6", // was #F5821F -> brand "Electric Blue" (repurposed accent)
+        navy: withOpacity("--color-navy"), // Primary Text (light) -> white (dark)
+        "navy-deep": withOpacity("--color-navy-deep"), // dark accent-section bg, both themes
+        teal: withOpacity("--color-teal"), // Primary Blue (primary accent/CTA)
+        "light-teal": withOpacity("--color-light-teal"), // Border / soft pale
+        mist: withOpacity("--color-mist"), // Light Background / Secondary Background
+        orange: withOpacity("--color-orange"), // Electric Blue (repurposed accent)
 
-        "primary-blue": "#1F6FFF",
-        "dark-blue": "#1A4DFF",
-        "bright-cyan": "#22D3FF",
-        "light-cyan": "#67E8FF",
-        "electric-blue": "#3B82F6",
-        "soft-blue": "#EEF8FF", // brand "Soft Background" -- hover fills
-        "text-secondary": "#5B6B83",
-        "text-muted": "#8796A8",
+        "primary-blue": withOpacity("--color-primary-blue"),
+        "dark-blue": withOpacity("--color-dark-blue"),
+        "bright-cyan": withOpacity("--color-bright-cyan"),
+        "light-cyan": withOpacity("--color-light-cyan"),
+        "electric-blue": withOpacity("--color-electric-blue"),
+        "soft-blue": withOpacity("--color-soft-blue"), // Soft Background -- hover fills
+        "text-secondary": withOpacity("--color-text-secondary"),
+        "text-muted": withOpacity("--color-text-muted"),
+        "text-disabled": withOpacity("--color-text-disabled"),
 
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        card: withOpacity("--color-card"), // card/surface background (was bare `white`)
+        "card-elevated": withOpacity("--color-card-elevated"),
+        section: withOpacity("--color-section"), // regular section background (was bare `white`)
+
+        success: "#10B981",
+        warning: "#F59E0B",
+        error: "#EF4444",
+
+        background: withOpacity("--background"),
+        foreground: withOpacity("--foreground"),
       },
       fontFamily: {
         sans: ["var(--font-inter)", "sans-serif"],
@@ -61,10 +79,11 @@ const config: Config = {
         "3xl": "2rem",
       },
       boxShadow: {
-        soft: "0 4px 24px -4px rgba(16, 42, 67, 0.08)",
-        card: "0 8px 30px -8px rgba(16, 42, 67, 0.12)",
-        glow: "0 0 0 3px rgba(31, 111, 255, 0.16), 0 12px 32px -8px rgba(16, 42, 67, 0.18)",
-        "glow-dark": "0 0 0 3px rgba(31, 111, 255, 0.28), 0 12px 32px -8px rgba(0, 0, 0, 0.4)",
+        soft: "0 4px 24px -4px rgb(var(--shadow-ambient) / 0.08)",
+        card: "0 8px 30px -8px rgb(var(--shadow-ambient) / 0.12)",
+        glow: "0 0 0 3px rgb(var(--color-primary-blue) / 0.16), 0 12px 32px -8px rgb(var(--shadow-ambient) / 0.18)",
+        "glow-dark": "0 0 0 3px rgb(var(--color-primary-blue) / 0.28), 0 12px 32px -8px rgb(var(--shadow-ambient) / 0.4)",
+        "glow-cyan": "0 0 0 3px rgb(var(--color-bright-cyan) / 0.22), 0 12px 32px -8px rgb(var(--shadow-ambient) / 0.25)",
       },
       scrollMarginTop: {
         header: "5rem",

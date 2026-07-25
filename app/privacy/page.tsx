@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16">
+      <section className="bg-section px-6 py-16">
         <div className="mx-auto max-w-3xl">
           <div className="flex items-start gap-3 rounded-2xl border-2 border-dashed border-orange/40 bg-orange/5 p-5">
             <AlertTriangle

@@ -40,7 +40,7 @@ function PropertyCard() {
   return (
     <div className="flex flex-1 flex-col overflow-hidden rounded-md bg-white/15">
       <div className="relative h-2/3 w-full bg-white/20">
-        <span className="absolute right-1 top-1 rounded bg-white/90 px-1.5 py-0.5 text-[6px] font-bold text-navy">
+        <span className="absolute right-1 top-1 rounded bg-white/90 px-1.5 py-0.5 text-[6px] font-bold text-navy-deep">
           $—
         </span>
       </div>
@@ -177,7 +177,7 @@ function ProductCard() {
         <div className="h-1 w-3/4 rounded-full bg-white/50" />
         <div className="flex items-center justify-between">
           <div className="h-1 w-6 rounded-full bg-white/40" />
-          <Plus className="h-2.5 w-2.5 rounded-full bg-white text-navy" strokeWidth={3} />
+          <Plus className="h-2.5 w-2.5 rounded-full bg-white text-navy-deep" strokeWidth={3} />
         </div>
       </div>
     </div>

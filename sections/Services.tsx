@@ -39,7 +39,7 @@ const OFFSET_BY_COLUMN = ["lg:mt-0", "lg:mt-12", "lg:mt-0"];
 
 export default function Services() {
   return (
-    <SectionShell id="services" title="Our Services" eyebrow="What We Do" className="bg-white">
+    <SectionShell id="services" title="Our Services" eyebrow="What We Do" className="bg-section">
       <p className="mt-4 max-w-3xl text-lg text-navy/70">
         Five integrated technology disciplines, engineered to work together
         as one growth system.
