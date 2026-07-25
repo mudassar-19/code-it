@@ -104,14 +104,14 @@ export default function Hero() {
             >
               <a
                 href="#get-started"
-                className="group flex w-full items-center justify-center gap-2 rounded-2xl bg-teal px-8 py-4 text-center font-semibold text-white shadow-card transition-transform hover:scale-[1.03] hover:bg-teal/90 sm:w-auto"
+                className="group flex w-full items-center justify-center gap-2 rounded-2xl bg-brand-gradient px-8 py-4 text-center font-semibold text-white shadow-glow transition-[filter,transform] duration-250 hover:scale-[1.03] hover:brightness-110 sm:w-auto"
               >
                 Get Started
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
               <a
                 href="#book-a-call"
-                className="w-full rounded-2xl border-2 border-navy px-8 py-4 text-center font-semibold text-navy transition-colors hover:bg-navy hover:text-white sm:w-auto"
+                className="w-full rounded-2xl border-2 border-primary-blue bg-white px-8 py-4 text-center font-semibold text-primary-blue transition-colors duration-250 hover:bg-soft-blue sm:w-auto"
               >
                 Book a Consultation
               </a>

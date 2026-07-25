@@ -13,9 +13,9 @@ export default function HomePage() {
   return (
     <main>
       <Hero />
-      <ShapeDivider variant="wave" bgColor={colors.white} fillColor={colors.navy} />
+      <ShapeDivider variant="wave" bgColor={colors.white} fillColor={colors.navyDeep} />
       <About />
-      <ShapeDivider variant="wave" bgColor={colors.navy} fillColor={colors.white} flip />
+      <ShapeDivider variant="wave" bgColor={colors.navyDeep} fillColor={colors.white} flip />
       <Services />
       <ShapeDivider variant="angle" bgColor={colors.white} fillColor={colors.navyDeep} />
       <Industries />

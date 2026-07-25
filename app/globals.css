@@ -4,7 +4,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #1b2a4a;
+  --foreground: #102a43;
 }
 
 html {
@@ -51,6 +51,13 @@ body {
   .link-underline:hover::after,
   .link-underline:focus-visible::after {
     transform: scaleX(1);
+  }
+
+  /* Same underline-draw mechanic as .link-underline, but the accent is
+     always the brand gradient instead of following currentColor — used
+     for the navbar's active/hover indicator specifically. */
+  .link-underline-gradient::after {
+    background: linear-gradient(135deg, #22d3ff 0%, #1f6fff 55%, #1a4dff 100%);
   }
 
   .no-scrollbar {

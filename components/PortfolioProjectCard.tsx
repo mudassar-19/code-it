@@ -37,7 +37,7 @@ const PortfolioProjectCard = forwardRef<
     >
       <Link
         href={`/portfolio/${project.slug}`}
-        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-light-teal/60 bg-white text-left shadow-soft transition-shadow duration-300 hover:shadow-glow"
+        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-light-teal/60 bg-white text-left shadow-soft transition-[box-shadow,border-color] duration-300 hover:border-bright-cyan hover:shadow-glow"
       >
         <div className="relative aspect-[4/3] w-full">
           <PortfolioProjectImage image={project.image} />

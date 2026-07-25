@@ -292,7 +292,7 @@ export default function PortfolioDetail({ project }: PortfolioDetailProps) {
           <div className="mt-14 border-t border-light-teal pt-8">
             <Link
               href="/portfolio"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal hover:text-navy"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal hover:text-bright-cyan"
             >
               <ArrowLeft className="h-4 w-4" strokeWidth={2} />
               Back to Portfolio

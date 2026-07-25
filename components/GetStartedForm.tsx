@@ -87,7 +87,7 @@ function FieldError({ message }: { message?: string }) {
 }
 
 const inputClasses = (hasError: boolean) =>
-  `rounded-xl border px-4 py-2.5 text-navy outline-none transition-colors focus:border-teal ${
+  `rounded-xl border px-4 py-2.5 text-navy outline-none transition-[border-color,box-shadow] duration-250 focus:border-primary-blue focus:ring-4 focus:ring-light-cyan/40 ${
     hasError ? "border-red-400" : "border-light-teal"
   }`;
 
@@ -254,7 +254,7 @@ export default function GetStartedForm() {
                     className={`flex flex-col items-center gap-2 rounded-xl border-2 p-4 text-center transition-colors duration-200 ${
                       isSelected
                         ? "border-teal bg-light-teal/40"
-                        : "border-light-teal hover:border-teal/50"
+                        : "border-light-teal hover:border-bright-cyan/50"
                     }`}
                   >
                     {Icon && (
@@ -275,7 +275,7 @@ export default function GetStartedForm() {
             <button
               type="button"
               onClick={goToDetails}
-              className="mt-6 w-full rounded-2xl bg-teal px-8 py-3 text-center font-semibold text-white shadow-card transition-transform hover:scale-[1.02] hover:bg-teal/90 sm:w-fit"
+              className="mt-6 w-full rounded-2xl bg-brand-gradient px-8 py-3 text-center font-semibold text-white shadow-glow transition-[filter,transform] duration-250 hover:scale-[1.02] hover:brightness-110 sm:w-fit"
             >
               Continue
             </button>
@@ -303,7 +303,7 @@ export default function GetStartedForm() {
               <button
                 type="button"
                 onClick={() => setStep("industry")}
-                className="inline-flex items-center gap-1 text-sm font-semibold text-teal hover:text-navy"
+                className="inline-flex items-center gap-1 text-sm font-semibold text-teal hover:text-bright-cyan"
               >
                 <ChevronLeft className="h-4 w-4" /> Change
               </button>
@@ -450,7 +450,7 @@ export default function GetStartedForm() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-teal px-8 py-3 text-center font-semibold text-white shadow-card transition-transform hover:scale-[1.02] hover:bg-teal/90 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-gradient px-8 py-3 text-center font-semibold text-white shadow-glow transition-[filter,transform] duration-250 hover:scale-[1.02] hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100 disabled:hover:brightness-100"
               >
                 {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
                 {submitting ? "Submitting..." : "Submit"}

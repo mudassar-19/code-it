@@ -23,7 +23,7 @@ export default function IndustryPageTemplate({
   return (
     <main>
       {/* Hero */}
-      <section className="bg-navy px-6 pb-20 pt-32 text-white">
+      <section className="bg-navy-deep px-6 pb-20 pt-32 text-white">
         <motion.div
           className="mx-auto max-w-4xl text-center"
           initial={{ opacity: 0, y: 24 }}
@@ -43,13 +43,13 @@ export default function IndustryPageTemplate({
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href={getStartedHref}
-              className="w-full rounded-2xl bg-teal px-8 py-4 text-center font-semibold text-white shadow-card transition-transform hover:scale-[1.03] hover:bg-teal/90 sm:w-auto"
+              className="w-full rounded-2xl bg-brand-gradient px-8 py-4 text-center font-semibold text-white shadow-glow-dark transition-[filter,transform] duration-250 hover:scale-[1.03] hover:brightness-110 sm:w-auto"
             >
               Get Started for {industry.name}
             </Link>
             <Link
               href="/#book-a-call"
-              className="w-full rounded-2xl border-2 border-white px-8 py-4 text-center font-semibold text-white transition-colors hover:bg-white hover:text-navy sm:w-auto"
+              className="w-full rounded-2xl border-2 border-white px-8 py-4 text-center font-semibold text-white transition-colors duration-250 hover:bg-white hover:text-navy sm:w-auto"
             >
               Book a Consultation
             </Link>
@@ -163,7 +163,7 @@ export default function IndustryPageTemplate({
                   delay: index * 0.1,
                 }}
                 whileHover={{ y: -6 }}
-                className="rounded-2xl border-2 border-dashed border-teal/40 bg-light-teal/20 p-6 transition-colors duration-300 hover:border-teal"
+                className="rounded-2xl border-2 border-dashed border-teal/40 bg-light-teal/20 p-6 transition-colors duration-300 hover:border-bright-cyan"
               >
                 <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-teal text-white">
                   <Lightbulb className="h-5 w-5" strokeWidth={2} />
@@ -176,7 +176,7 @@ export default function IndustryPageTemplate({
       </section>
 
       {/* Case Study */}
-      <section className="bg-navy px-6 py-20">
+      <section className="bg-navy-deep px-6 py-20">
         <motion.div
           className="mx-auto max-w-3xl"
           initial={{ opacity: 0, y: 24 }}
@@ -200,7 +200,7 @@ export default function IndustryPageTemplate({
             <p className="mt-4 text-navy/70">{detail.caseStudy.summary}</p>
             <Link
               href={`/portfolio?industry=${industry.slug}`}
-              className="mt-6 inline-block text-sm font-semibold text-teal hover:text-navy"
+              className="mt-6 inline-block text-sm font-semibold text-teal hover:text-bright-cyan"
             >
               See more in our Portfolio →
             </Link>
@@ -229,13 +229,13 @@ export default function IndustryPageTemplate({
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href={getStartedHref}
-              className="w-full rounded-2xl bg-teal px-8 py-4 text-center font-semibold text-white shadow-card transition-transform hover:scale-[1.03] hover:bg-teal/90 sm:w-auto"
+              className="w-full rounded-2xl bg-brand-gradient px-8 py-4 text-center font-semibold text-white shadow-glow transition-[filter,transform] duration-250 hover:scale-[1.03] hover:brightness-110 sm:w-auto"
             >
               Get Started for {industry.name}
             </Link>
             <Link
               href="/#industries"
-              className="text-sm font-semibold text-navy underline-offset-4 hover:text-teal hover:underline"
+              className="text-sm font-semibold text-navy underline-offset-4 hover:text-bright-cyan hover:underline"
             >
               Explore other industries
             </Link>

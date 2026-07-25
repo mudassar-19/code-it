@@ -7,15 +7,30 @@ export const brand = {
   tagline: "Think, Design, Launch.",
 } as const;
 
+// CodeIT brand palette. Legacy field names are kept so every existing
+// consumer (Three.js materials, ShapeDivider color props) repoints to the
+// new brand colors automatically — see tailwind.config.ts for the same
+// mapping applied to the Tailwind token system.
 export const colors = {
-  navy: "#1B2A4A",
-  navyDeep: "#121D36",
-  teal: "#16A6A0",
-  lightTeal: "#D6F0EE",
-  mist: "#EFF9F8",
+  navy: "#102A43", // Primary Text
+  navyDeep: "#071326", // Dark Navy (section bg)
+  navySection: "#0D1B3D", // Section Navy (cards on dark sections)
+  teal: "#1F6FFF", // Primary Blue
+  lightTeal: "#E3EDF8", // Border
+  mist: "#F8FBFF", // Light Background
   white: "#FFFFFF",
-  orange: "#F5821F",
+  orange: "#3B82F6", // Electric Blue (repurposed accent)
+  darkBlue: "#1A4DFF",
+  brightCyan: "#22D3FF",
+  lightCyan: "#67E8FF",
+  electricBlue: "#3B82F6",
+  softBlue: "#EEF8FF",
+  textSecondary: "#5B6B83",
+  textMuted: "#8796A8",
 } as const;
+
+export const brandGradient =
+  "linear-gradient(135deg, #22D3FF 0%, #1F6FFF 55%, #1A4DFF 100%)";
 
 export const fonts = {
   body: "var(--font-inter)",
@@ -30,8 +45,8 @@ export const radii = {
 } as const;
 
 export const shadows = {
-  soft: "0 4px 24px -4px rgba(27, 42, 74, 0.08)",
-  card: "0 8px 30px -8px rgba(27, 42, 74, 0.12)",
+  soft: "0 4px 24px -4px rgba(16, 42, 67, 0.08)",
+  card: "0 8px 30px -8px rgba(16, 42, 67, 0.12)",
 } as const;
 
 export type NavLink = {

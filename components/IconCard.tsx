@@ -25,8 +25,9 @@ export default function IconCard({
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
       whileHover={{ y: -8, rotate: tilt, scale: 1.02 }}
-      className="group rounded-2xl border border-light-teal/60 bg-white p-6 shadow-soft transition-shadow duration-300 hover:border-teal hover:shadow-glow"
+      className="group relative overflow-hidden rounded-2xl border border-light-teal/60 bg-white p-6 shadow-soft transition-shadow duration-300 hover:border-bright-cyan hover:shadow-glow"
     >
+      <span className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-brand-gradient transition-transform duration-300 group-hover:scale-x-100" />
       <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-light-teal text-teal transition-all duration-300 group-hover:-rotate-6 group-hover:bg-teal group-hover:text-white">
         {icon}
       </div>

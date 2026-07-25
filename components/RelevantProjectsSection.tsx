@@ -53,7 +53,7 @@ export default function RelevantProjectsSection({
                 delay: index * 0.1,
               }}
               whileHover={{ y: -6 }}
-              className="flex flex-col rounded-2xl border border-light-teal/60 bg-white p-6 shadow-soft transition-shadow duration-300 hover:shadow-glow"
+              className="flex flex-col rounded-2xl border border-light-teal/60 bg-white p-6 shadow-soft transition-[box-shadow,border-color] duration-300 hover:border-bright-cyan hover:shadow-glow"
             >
               <span className="inline-block w-fit rounded-full bg-light-teal px-3 py-1 text-xs font-semibold text-teal">
                 {project.techCategory}
@@ -80,7 +80,7 @@ export default function RelevantProjectsSection({
 
         <Link
           href={`/portfolio?industry=${industry.slug}`}
-          className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-teal hover:text-navy"
+          className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-teal hover:text-bright-cyan"
         >
           View All {industry.name} Projects
           <ArrowRight className="h-4 w-4" />

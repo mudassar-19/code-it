@@ -123,7 +123,7 @@ export default function Industries() {
             onClick={() => scrollByCard(-1)}
             disabled={!canScrollLeft}
             aria-label="Scroll industries left"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-teal hover:text-teal disabled:opacity-30 disabled:hover:border-white/15 disabled:hover:text-white"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-bright-cyan hover:text-bright-cyan disabled:opacity-30 disabled:hover:border-white/15 disabled:hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" strokeWidth={2} />
           </button>
@@ -132,7 +132,7 @@ export default function Industries() {
             onClick={() => scrollByCard(1)}
             disabled={!canScrollRight}
             aria-label="Scroll industries right"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-teal hover:text-teal disabled:opacity-30 disabled:hover:border-white/15 disabled:hover:text-white"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-bright-cyan hover:text-bright-cyan disabled:opacity-30 disabled:hover:border-white/15 disabled:hover:text-white"
           >
             <ArrowRight className="h-4 w-4" strokeWidth={2} />
           </button>

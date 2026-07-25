@@ -19,7 +19,7 @@ function FieldError({ message }: { message?: string }) {
 }
 
 const inputClasses = (hasError: boolean) =>
-  `rounded-xl border px-4 py-2.5 text-navy outline-none transition-colors focus:border-teal ${
+  `rounded-xl border px-4 py-2.5 text-navy outline-none transition-[border-color,box-shadow] duration-250 focus:border-primary-blue focus:ring-4 focus:ring-light-cyan/40 ${
     hasError ? "border-red-400" : "border-light-teal"
   }`;
 
@@ -192,7 +192,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="inline-flex w-fit items-center justify-center gap-2 rounded-2xl bg-teal px-8 py-3 text-center font-semibold text-white shadow-card transition-transform hover:scale-[1.02] hover:bg-teal/90 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
+        className="inline-flex w-fit items-center justify-center gap-2 rounded-2xl bg-brand-gradient px-8 py-3 text-center font-semibold text-white shadow-glow transition-[filter,transform] duration-250 hover:scale-[1.02] hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100 disabled:hover:brightness-100"
       >
         {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
         {submitting ? "Sending..." : "Send Message"}

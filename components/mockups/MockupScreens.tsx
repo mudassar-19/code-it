@@ -17,9 +17,9 @@ import { ChevronLeft, ChevronRight, FileText, MapPin, Plus, Send, TrendingUp } f
 import type { PortfolioMockupStyle, PortfolioProjectImage } from "@/lib/portfolio";
 
 const GRADIENT_CLASSES: Record<PortfolioProjectImage["gradient"], string> = {
-  "teal-to-navy": "from-teal via-navy to-navy",
-  "navy-to-teal": "from-navy via-teal to-light-teal",
-  "light-teal-to-navy": "from-light-teal via-teal to-navy",
+  "teal-to-navy": "from-bright-cyan via-primary-blue to-navy-deep",
+  "navy-to-teal": "from-navy-deep via-primary-blue to-light-cyan",
+  "light-teal-to-navy": "from-light-cyan via-primary-blue to-navy-deep",
 };
 
 type ScreenProps = { gradient: PortfolioProjectImage["gradient"] };

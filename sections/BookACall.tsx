@@ -24,7 +24,7 @@ export default function BookACall() {
         Prefer email?{" "}
         <Link
           href="/#contact"
-          className="font-semibold text-teal hover:text-navy"
+          className="font-semibold text-teal hover:text-bright-cyan"
         >
           Contact us directly
         </Link>

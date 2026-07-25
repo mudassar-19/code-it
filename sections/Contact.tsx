@@ -64,7 +64,7 @@ export default function Contact() {
                     <a
                       href={social.href}
                       aria-label={social.label}
-                      className="flex h-10 w-10 items-center justify-center rounded-2xl bg-light-teal text-teal transition-all duration-300 hover:-translate-y-1 hover:bg-teal hover:text-white"
+                      className="flex h-10 w-10 items-center justify-center rounded-2xl bg-light-teal text-teal transition-all duration-300 hover:-translate-y-1 hover:bg-brand-gradient hover:text-white"
                     >
                       <Icon className="h-4 w-4" />
                     </a>

@@ -42,7 +42,7 @@ export default function Navbar() {
           <li>
             <Link
               href={homeLink.href}
-              className="link-underline text-sm font-medium text-navy transition-colors hover:text-teal"
+              className="link-underline link-underline-gradient text-sm font-medium text-navy transition-colors hover:text-teal"
             >
               {homeLink.label}
             </Link>
@@ -50,7 +50,7 @@ export default function Navbar() {
           <li>
             <Link
               href={aboutLink.href}
-              className="link-underline text-sm font-medium text-navy transition-colors hover:text-teal"
+              className="link-underline link-underline-gradient text-sm font-medium text-navy transition-colors hover:text-teal"
             >
               {aboutLink.label}
             </Link>
@@ -62,7 +62,7 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="link-underline text-sm font-medium text-navy transition-colors hover:text-teal"
+                className="link-underline link-underline-gradient text-sm font-medium text-navy transition-colors hover:text-teal"
               >
                 {link.label}
               </Link>

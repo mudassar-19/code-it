@@ -82,7 +82,7 @@ export default function ServicesDropdown() {
               <Link
                 href="/#industries"
                 onClick={() => setIsOpen(false)}
-                className="text-sm font-semibold text-teal hover:text-navy"
+                className="text-sm font-semibold text-teal hover:text-bright-cyan"
               >
                 View all industries →
               </Link>

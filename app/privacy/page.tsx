@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <main>
-      <section className="bg-navy px-6 pb-16 pt-32 text-white">
+      <section className="bg-navy-deep px-6 pb-16 pt-32 text-white">
         <div className="mx-auto max-w-3xl">
           <h1 className="font-display text-4xl font-bold sm:text-5xl">
             Privacy Policy
@@ -172,7 +172,7 @@ export default function PrivacyPolicyPage() {
                 handle your information, contact us at{" "}
                 <a
                   href={`mailto:${contactInfo.email}`}
-                  className="font-semibold text-teal hover:text-navy"
+                  className="font-semibold text-teal hover:text-bright-cyan"
                 >
                   {contactInfo.email}
                 </a>

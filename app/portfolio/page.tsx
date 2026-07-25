@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function PortfolioPage() {
   return (
     <main>
-      <section className="bg-navy px-6 pb-16 pt-32 text-white">
+      <section className="bg-navy-deep px-6 pb-16 pt-32 text-white">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="font-display text-4xl font-bold sm:text-5xl">
             Our Portfolio

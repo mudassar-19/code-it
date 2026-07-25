@@ -49,7 +49,7 @@ export default function Portfolio() {
 
       <Link
         href="/portfolio"
-        className="link-underline group mt-10 inline-flex items-center gap-1.5 font-semibold text-teal hover:text-navy"
+        className="link-underline group mt-10 inline-flex items-center gap-1.5 font-semibold text-teal hover:text-bright-cyan"
       >
         View Full Portfolio
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={2} />

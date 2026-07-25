@@ -37,7 +37,7 @@ export default function RelatedProjects({ project }: RelatedProjectsProps) {
             >
               <Link
                 href={`/portfolio/${relatedProject.slug}`}
-                className="flex h-full flex-col rounded-2xl border border-light-teal/60 bg-white p-6 shadow-soft transition-shadow duration-300 hover:shadow-glow"
+                className="flex h-full flex-col rounded-2xl border border-light-teal/60 bg-white p-6 shadow-soft transition-[box-shadow,border-color] duration-300 hover:border-bright-cyan hover:shadow-glow"
               >
                 <span className="inline-block w-fit rounded-full bg-light-teal px-3 py-1 text-xs font-semibold text-teal">
                   {relatedProject.techCategory}

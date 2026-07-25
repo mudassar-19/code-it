@@ -34,7 +34,7 @@ export default function Footer() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="link-underline text-sm text-white/80 transition-colors hover:text-teal"
+                  className="link-underline text-sm text-white/80 transition-colors hover:text-bright-cyan"
                 >
                   {link.label}
                 </Link>
@@ -62,7 +62,7 @@ export default function Footer() {
                   <a
                     href={social.href}
                     aria-label={social.label}
-                    className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-white/80 transition-all duration-300 hover:-translate-y-1 hover:bg-teal hover:text-white"
+                    className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-white/80 transition-all duration-300 hover:-translate-y-1 hover:bg-brand-gradient hover:text-white"
                   >
                     <Icon className="h-4 w-4" />
                   </a>
@@ -77,7 +77,7 @@ export default function Footer() {
         <p>
           © {new Date().getFullYear()} {brand.name}. All rights reserved.
         </p>
-        <Link href="/privacy" className="link-underline text-white/60 transition-colors hover:text-teal">
+        <Link href="/privacy" className="link-underline text-white/60 transition-colors hover:text-bright-cyan">
           Privacy Policy
         </Link>
       </div>

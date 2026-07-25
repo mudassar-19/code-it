@@ -7,10 +7,12 @@
 import { industryIcons } from "@/lib/industryIcons";
 import type { PortfolioProjectImage as PortfolioProjectImageData } from "@/lib/portfolio";
 
+// Three directional takes on the brand gradient (cyan -> blue -> dark navy)
+// so portfolio cards still read as visually distinct from one another.
 const GRADIENT_CLASSES: Record<PortfolioProjectImageData["gradient"], string> = {
-  "teal-to-navy": "from-teal via-navy to-navy",
-  "navy-to-teal": "from-navy via-teal to-light-teal",
-  "light-teal-to-navy": "from-light-teal via-teal to-navy",
+  "teal-to-navy": "from-bright-cyan via-primary-blue to-navy-deep",
+  "navy-to-teal": "from-navy-deep via-primary-blue to-light-cyan",
+  "light-teal-to-navy": "from-light-cyan via-primary-blue to-navy-deep",
 };
 
 type PortfolioProjectImageProps = {

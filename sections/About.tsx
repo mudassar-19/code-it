@@ -34,7 +34,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="scroll-mt-header relative overflow-hidden bg-navy px-6 py-24 text-white lg:py-32"
+      className="scroll-mt-header relative overflow-hidden bg-navy-deep px-6 py-24 text-white lg:py-32"
     >
       <div
         aria-hidden="true"
