@@ -1,56 +1,53 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import PortfolioDetail from "@/components/PortfolioDetail";
-import RelatedProjects from "@/components/RelatedProjects";
+import ProductDetail from "@/components/ProductDetail";
 import JsonLd from "@/components/JsonLd";
-import { portfolioProjects } from "@/lib/portfolio";
-import {
-  breadcrumbJsonLd,
-  buildMetadata,
-  projectPageDescription,
-  projectPageTitle,
-} from "@/lib/seo";
+import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
+import { getPublishedProductBySlug } from "@/lib/products";
 
-type PortfolioProjectPageProps = {
-  params: { slug: string };
-};
+type PortfolioProjectPageProps = { params: { slug: string } };
 
-// Route slugs are the same hand-curated, title-derived slugs already stored
-// per project in lib/portfolio.ts (e.g. "AI-Powered Listing Assistant for a
-// Multi-Agent Real Estate Brokerage" -> "ai-listing-assistant-multi-agent-brokerage").
-export function generateStaticParams() {
-  return portfolioProjects.map((project) => ({ slug: project.slug }));
-}
+// Published projects change through the admin panel, so render on demand
+// rather than statically pre-generating slugs.
+export const dynamic = "force-dynamic";
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
-}: PortfolioProjectPageProps): Metadata {
-  const project = portfolioProjects.find((p) => p.slug === params.slug);
+}: PortfolioProjectPageProps): Promise<Metadata> {
+  let project = null;
+  try {
+    project = await getPublishedProductBySlug(params.slug);
+  } catch {
+    project = null;
+  }
 
   if (!project) {
     return buildMetadata({
       title: "Our Portfolio — Web, Mobile & AI Projects | CodeIT",
       description:
-        "Browse real-world web development, mobile app, and AI automation projects by CodeIT across every industry we serve.",
+        "Browse real web development, mobile app, and AI automation work by CodeIT across the industries we serve.",
       path: "/portfolio",
     });
   }
 
   return buildMetadata({
-    title: projectPageTitle(project.title),
-    description: projectPageDescription(project.description),
+    title: `${project.title} | CodeIT`,
+    description: project.shortDesc,
     path: `/portfolio/${project.slug}`,
   });
 }
 
-export default function PortfolioProjectPage({
+export default async function PortfolioProjectPage({
   params,
 }: PortfolioProjectPageProps) {
-  const project = portfolioProjects.find((p) => p.slug === params.slug);
-
-  if (!project) {
-    notFound();
+  let project = null;
+  try {
+    project = await getPublishedProductBySlug(params.slug);
+  } catch {
+    project = null;
   }
+
+  if (!project) notFound();
 
   return (
     <main>
@@ -61,8 +58,7 @@ export default function PortfolioProjectPage({
           { name: project.title, path: `/portfolio/${project.slug}` },
         ])}
       />
-      <PortfolioDetail project={project} />
-      <RelatedProjects project={project} />
+      <ProductDetail product={project} />
     </main>
   );
 }

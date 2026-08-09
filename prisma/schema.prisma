@@ -1,11 +1,11 @@
-// CodeIT — Lead intake database schema.
+// CodeIT — application database schema (MongoDB via Prisma).
 //
-// SQLite is used as the default local system of record for simplicity (zero
-// external infra to run this project). For production, swap `provider` to
-// "postgresql" and point DATABASE_URL at a managed Postgres instance — the
-// model below doesn't need to change.
+// The platform is backed by MongoDB Atlas (a managed, free M0 cluster is
+// enough for now). MongoDB has no SQL migration history — instead of
+// `prisma migrate`, apply schema changes with `npx prisma db push` (see
+// README.md). DATABASE_URL is an Atlas connection string (mongodb+srv://...).
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
@@ -14,11 +14,12 @@ generator client {
 }
 
 // One row per lead submission — either the "Get Started" form or the
-// simpler Contact form (see `source`). Our database is the durable system
-// of record — any CRM sync (see lib/ghlSync.ts) is a one-way, best-effort
-// export *from* this table, never the source of truth.
+// simpler Contact form (see `source`). This table is the single source of
+// truth for leads — the intake API writes here (app/api/lead/route.ts) and
+// the admin panel reads/updates from here (app/admin/leads). A Resend email
+// notification is sent to the team on each new lead.
 model Lead {
-  id           String   @id @default(cuid())
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
   // A real industry slug (see lib/industries.ts) or "general-inquiry" for
   // submissions not tied to a specific industry (e.g. the Contact form).
   industry     String
@@ -30,16 +31,64 @@ model Lead {
   businessName String
   description  String
   // Industry-specific question/answer pairs, JSON-encoded (Record<string, string>).
-  // Kept as a serialized string rather than modeled columns since the question
+  // Kept as a serialized string rather than modeled fields since the question
   // set varies per industry — see lib/industryQuestions.ts.
   answers      String
   // Which form this lead came in through, e.g. "get-started-form" or
   // "contact-form" — lets us triage/report on lead origin.
   source       String   @default("get-started-form")
 
+  // Follow-up status set from the admin Leads panel: "new" | "contacted" |
+  // "closed" (see lib/leadStatus.ts). Optional at the DB layer so any lead
+  // created before this field existed still reads cleanly — the admin UI
+  // treats a missing value as "new".
+  status       String?  @default("new")
+
   // Set once the outbound GoHighLevel sync successfully pushes this lead
   // externally. Null means "not yet synced" — see lib/ghlSync.ts.
   crmSyncedAt  DateTime?
 
   createdAt    DateTime @default(now())
+}
+
+// A dashboard operator. Created only via scripts/seed-admin.ts from env
+// vars (never hardcoded). `passwordHash` is a bcrypt hash — it must never
+// be selected into any API response (see the explicit `select` clauses in
+// app/api/admin/*).
+model AdminUser {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String   @default("admin")
+  createdAt    DateTime @default(now())
+}
+
+// Grouping for Products (e.g. "Web Development", "AI & Automation").
+model Category {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  slug      String    @unique
+  createdAt DateTime  @default(now())
+  products  Product[]
+}
+
+// An admin-managed service/offering. `status` gates public visibility:
+// only "published" products are returned by the public /api/products route.
+model Product {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  slug          String   @unique
+  shortDesc     String
+  description   String
+  categoryId    String   @db.ObjectId
+  category      Category @relation(fields: [categoryId], references: [id])
+  priceLabel    String? // e.g. "$500 - $2,500" — flexible, not an exact checkout price
+  status        String   @default("draft") // draft | published
+  features      String[] @default([])
+  coverImageUrl String?
+  galleryUrls   String[] @default([])
+  videoUrl      String? // YouTube embed URL
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }

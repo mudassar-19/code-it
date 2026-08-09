@@ -4,6 +4,7 @@ import IndustryPageTemplate from "@/components/IndustryPageTemplate";
 import JsonLd from "@/components/JsonLd";
 import { getIndustryBySlug, industries } from "@/lib/industries";
 import { getIndustryDetail } from "@/lib/industryDetails";
+import { getPublishedProductsByIndustry } from "@/lib/products";
 import { breadcrumbJsonLd, buildMetadata, INDUSTRY_SEO, serviceJsonLd } from "@/lib/seo";
 
 type IndustryPageProps = {
@@ -13,6 +14,10 @@ type IndustryPageProps = {
 export function generateStaticParams() {
   return industries.map((industry) => ({ slug: industry.slug }));
 }
+
+// ISR: statically rendered but refreshed periodically so the "Relevant
+// Projects" block picks up newly published work without a redeploy.
+export const revalidate = 300;
 
 export function generateMetadata({ params }: IndustryPageProps): Metadata {
   const industry = getIndustryBySlug(params.slug);
@@ -34,13 +39,20 @@ export function generateMetadata({ params }: IndustryPageProps): Metadata {
   });
 }
 
-export default function IndustryPage({ params }: IndustryPageProps) {
+export default async function IndustryPage({ params }: IndustryPageProps) {
   const industry = getIndustryBySlug(params.slug);
   const detail = getIndustryDetail(params.slug);
 
   if (!industry || !detail) {
     notFound();
   }
+
+  // Real published Products in this industry's category (empty on any DB
+  // error — the section simply hides itself, see RelevantProjectsSection).
+  const relevantProjects = await getPublishedProductsByIndustry(
+    industry.name,
+    3,
+  );
 
   return (
     <>
@@ -57,7 +69,11 @@ export default function IndustryPage({ params }: IndustryPageProps) {
           { name: `${industry.name} Solutions`, path: `/services/${industry.slug}` },
         ])}
       />
-      <IndustryPageTemplate industry={industry} detail={detail} />
+      <IndustryPageTemplate
+        industry={industry}
+        detail={detail}
+        relevantProjects={relevantProjects}
+      />
     </>
   );
 }

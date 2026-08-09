@@ -1,19 +1,19 @@
 import type { MetadataRoute } from "next";
 import { industries } from "@/lib/industries";
-import { portfolioProjects } from "@/lib/portfolio";
 import { SITE_URL } from "@/lib/seo";
+import { getPublishedProductSlugs } from "@/lib/products";
 
-// Static pages + every dynamically-generated industry and portfolio-project
-// route (same source data generateStaticParams uses in their respective
-// page.tsx files, so this can never drift out of sync with what's actually
-// deployed).
-export default function sitemap(): MetadataRoute.Sitemap {
+// Static pages + every industry route + every published portfolio project,
+// with the project slugs read live from the database (the single source of
+// truth), so the sitemap can never drift from what's actually published.
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
     { url: `${SITE_URL}/portfolio`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE_URL}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${SITE_URL}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
 
   const industryRoutes: MetadataRoute.Sitemap = industries.map((industry) => ({
@@ -23,11 +23,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  const portfolioRoutes: MetadataRoute.Sitemap = portfolioProjects.map((project) => ({
-    url: `${SITE_URL}/portfolio/${project.slug}`,
+  // Published portfolio projects from the database. getPublishedProductSlugs()
+  // swallows errors and returns [] so a DB hiccup can never fail sitemap
+  // generation.
+  const projectSlugs = await getPublishedProductSlugs();
+  const portfolioRoutes: MetadataRoute.Sitemap = projectSlugs.map((slug) => ({
+    url: `${SITE_URL}/portfolio/${slug}`,
     lastModified: now,
     changeFrequency: "monthly",
-    priority: 0.6,
+    priority: 0.7,
   }));
 
   return [...staticRoutes, ...industryRoutes, ...portfolioRoutes];

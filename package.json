@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "db:push": "prisma db push",
+    "seed:admin": "tsx scripts/seed-admin.ts",
+    "hash-password": "tsx scripts/hash-password.ts",
     "postinstall": "prisma generate"
   },
   "dependencies": {
@@ -14,10 +17,13 @@
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
     "@types/three": "^0.180.0",
-    "airtable": "^0.12.2",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.10.0",
     "framer-motion": "^12.42.2",
     "lucide-react": "^1.25.0",
+    "mongodb": "^7.5.0",
     "next": "14.2.35",
+    "next-auth": "^4.24.15",
     "prisma": "^6.19.3",
     "react": "^18",
     "react-dom": "^18",
@@ -27,6 +33,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -37,6 +44,7 @@
     "prettier": "^3.9.5",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^3.4.1",
+    "tsx": "^4.23.11",
     "typescript": "^5"
   }
 }

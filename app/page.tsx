@@ -19,6 +19,11 @@ export const metadata: Metadata = buildMetadata({
   path: "/",
 });
 
+// ISR: the homepage stays static/fast but re-renders at most every 5 minutes,
+// so newly published products (see sections/Portfolio.tsx) show up without a
+// redeploy. The build renders with a graceful fallback if the DB is offline.
+export const revalidate = 300;
+
 export default function HomePage() {
   return (
     <main>

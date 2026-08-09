@@ -6,16 +6,19 @@ import { AlertCircle, Check, Lightbulb, TrendingUp } from "lucide-react";
 import { industryIcons } from "@/lib/industryIcons";
 import type { Industry } from "@/lib/industries";
 import type { IndustryDetail } from "@/lib/industryDetails";
+import type { PublicProductCard } from "@/lib/products";
 import RelevantProjectsSection from "@/components/RelevantProjectsSection";
 
 type IndustryPageTemplateProps = {
   industry: Industry;
   detail: IndustryDetail;
+  relevantProjects: PublicProductCard[];
 };
 
 export default function IndustryPageTemplate({
   industry,
   detail,
+  relevantProjects,
 }: IndustryPageTemplateProps) {
   const Icon = industryIcons[industry.icon];
   const getStartedHref = `/?industry=${industry.slug}#get-started`;
@@ -208,7 +211,7 @@ export default function IndustryPageTemplate({
         </motion.div>
       </section>
 
-      <RelevantProjectsSection industry={industry} />
+      <RelevantProjectsSection industry={industry} projects={relevantProjects} />
 
       {/* Closing CTA */}
       <section className="bg-light-teal/40 px-6 py-20">

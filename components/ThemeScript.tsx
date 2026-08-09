@@ -8,7 +8,10 @@
 // during development). A raw <script> with no src blocks HTML parsing
 // (and therefore paint) until it finishes, which a JS-mediated loader
 // cannot guarantee.
-const THEME_SCRIPT = `(function(){try{if(localStorage.getItem("theme")==="dark"){document.documentElement.classList.add("dark")}}catch(e){}})();`;
+// Dark is the default theme: apply the `dark` class unless the visitor has
+// explicitly chosen light (localStorage.theme === "light"). If storage is
+// unavailable, still fall back to dark so the default is honored.
+const THEME_SCRIPT = `(function(){try{if(localStorage.getItem("theme")!=="light"){document.documentElement.classList.add("dark")}}catch(e){document.documentElement.classList.add("dark")}})();`;
 
 export default function ThemeScript() {
   // eslint-disable-next-line react/no-danger

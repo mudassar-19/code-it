@@ -1,8 +1,8 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa6";
 import SectionShell from "@/components/SectionShell";
 import ContactForm from "@/components/ContactForm";
 import { contactInfo } from "@/lib/contact";
-import { socialIcons } from "@/lib/socialIcons";
 
 export default function Contact() {
   return (
@@ -44,35 +44,22 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="flex items-start gap-4 rounded-2xl border border-light-teal bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
+          <a
+            href={contactInfo.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-start gap-4 rounded-2xl border border-light-teal bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
+          >
             <span className="flex h-11 w-11 flex-none items-center justify-center rounded-2xl bg-light-teal text-teal">
-              <MapPin className="h-5 w-5" strokeWidth={2} />
+              <FaWhatsapp className="h-5 w-5" />
             </span>
             <div>
-              <p className="text-sm font-semibold text-navy">Address</p>
-              <p className="text-sm text-navy/70">{contactInfo.address}</p>
+              <p className="text-sm font-semibold text-navy">WhatsApp</p>
+              <p className="text-sm text-navy/70 transition-colors group-hover:text-teal">
+                Chat with us
+              </p>
             </div>
-          </div>
-
-          <div className="rounded-2xl border border-light-teal bg-card p-5 shadow-soft">
-            <p className="text-sm font-semibold text-navy">Follow Us</p>
-            <ul className="mt-3 flex flex-wrap gap-3">
-              {contactInfo.socials.map((social) => {
-                const Icon = socialIcons[social.icon];
-                return (
-                  <li key={social.label}>
-                    <a
-                      href={social.href}
-                      aria-label={social.label}
-                      className="flex h-10 w-10 items-center justify-center rounded-2xl bg-light-teal text-teal transition-all duration-300 hover:-translate-y-1 hover:bg-brand-gradient hover:text-white"
-                    >
-                      <Icon className="h-4 w-4" />
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          </a>
         </div>
 
         <ContactForm />

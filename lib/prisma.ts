@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
 // Standard Next.js dev-mode singleton: without this, hot-reloading would spin
-// up a fresh PrismaClient (and a fresh SQLite connection pool) on every edit.
+// up a fresh PrismaClient (and a fresh MongoDB connection pool) on every edit.
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { AlertTriangle } from "lucide-react";
 import { brand } from "@/lib/theme";
 import { contactInfo } from "@/lib/contact";
 import { buildMetadata } from "@/lib/seo";
@@ -7,16 +6,18 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Privacy Policy | CodeIT — Data, Cookie & Security Practices",
   description:
-    "Learn how CodeIT collects, uses, and protects your personal information — including data practices, cookies, third-party services, and your privacy rights.",
+    "How CodeIT collects, uses, and protects the information you share through our contact and Get Started forms — data practices, cookies, third-party providers, and your rights.",
   path: "/privacy",
 });
 
-// PLACEHOLDER / TEMPLATE PRIVACY POLICY.
-// Generic, editable boilerplate covering the standard sections a privacy
-// policy needs (data collection, cookies, third-party services, contact).
-// It is not a substitute for legal advice — have this reviewed by a
-// qualified attorney before launch, and fill in the "[ ]" details once
-// they're finalized (effective date, jurisdiction, specific vendors, etc.).
+// A real, honest privacy policy describing CodeIT's actual data practices.
+// It reflects what the site does today (lead/contact forms stored in our
+// MongoDB database, transactional email via Resend, scheduling via Cal.com,
+// media via Cloudinary). It is a reasonable starting draft, not legal advice
+// — have it reviewed by a qualified attorney for your jurisdiction before
+// launch.
+const EFFECTIVE_DATE = "August 9, 2026";
+
 export default function PrivacyPolicyPage() {
   return (
     <main>
@@ -25,38 +26,24 @@ export default function PrivacyPolicyPage() {
           <h1 className="font-display text-4xl font-bold sm:text-5xl">
             Privacy Policy
           </h1>
-          <p className="mt-4 text-white/70">
-            Effective date: [To be set at launch]
-          </p>
+          <p className="mt-4 text-white/70">Effective date: {EFFECTIVE_DATE}</p>
         </div>
       </section>
 
       <section className="bg-section px-6 py-16">
         <div className="mx-auto max-w-3xl">
-          <div className="flex items-start gap-3 rounded-2xl border-2 border-dashed border-orange/40 bg-orange/5 p-5">
-            <AlertTriangle
-              className="mt-0.5 h-5 w-5 flex-none text-orange"
-              strokeWidth={2}
-            />
-            <p className="text-sm text-navy/80">
-              This is placeholder template text meant to illustrate the shape
-              of a privacy policy, not a finished legal document. Please have
-              this page reviewed — and customized to your actual data
-              practices, vendors, and jurisdiction — by a qualified attorney
-              before launch.
-            </p>
-          </div>
-
-          <div className="mt-10 flex flex-col gap-10 text-navy/80">
+          <div className="flex flex-col gap-10 text-navy/80">
             <section>
               <h2 className="font-display text-2xl font-bold text-navy">
                 Introduction
               </h2>
               <p className="mt-3 leading-relaxed">
-                {brand.name} (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;)
-                respects your privacy. This Privacy Policy explains what
-                information we collect when you visit our website or submit a
-                form, how we use it, and the choices available to you.
+                {brand.name} (&quot;we,&quot; &quot;us,&quot; or
+                &quot;our&quot;) is a software development agency. This Privacy
+                Policy explains what information we collect when you visit this
+                website or contact us, how we use it, who we share it with, and
+                the choices you have. By using our site or submitting a form,
+                you agree to the practices described here.
               </p>
             </section>
 
@@ -65,13 +52,26 @@ export default function PrivacyPolicyPage() {
                 Information We Collect
               </h2>
               <p className="mt-3 leading-relaxed">
-                We collect information you provide directly to us, such as
-                your name, email address, phone number, business name, and
-                any details you share through our &quot;Get Started&quot; or
-                Contact forms. We also automatically collect limited
-                technical information — such as browser type, device
-                information, and pages visited — to help us understand how
-                our site is used.
+                <strong className="text-navy">
+                  Information you give us.
+                </strong>{" "}
+                When you fill out our &quot;Get Started&quot; or Contact forms,
+                we collect the details you provide — typically your name, email
+                address, phone number, business name, the industry you operate
+                in, and the message or project details you share. If you book a
+                call, the scheduling provider also collects the information
+                needed to set up that meeting.
+              </p>
+              <p className="mt-3 leading-relaxed">
+                <strong className="text-navy">
+                  Information collected automatically.
+                </strong>{" "}
+                Like most websites, we may receive limited technical
+                information automatically, such as your browser type, device
+                type, approximate location derived from your IP address, and
+                which pages you view. We use your browser&apos;s local storage
+                to remember non-personal preferences, such as your light or
+                dark theme choice.
               </p>
             </section>
 
@@ -80,27 +80,13 @@ export default function PrivacyPolicyPage() {
                 Cookies &amp; Similar Technologies
               </h2>
               <p className="mt-3 leading-relaxed">
-                We may use cookies and similar tracking technologies to keep
-                our site functioning properly, remember your preferences, and
-                understand how visitors interact with our pages. You can
-                usually adjust your browser settings to refuse cookies,
-                though some parts of the site may not function as intended if
-                you do.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Third-Party Services
-              </h2>
-              <p className="mt-3 leading-relaxed">
-                We use a small number of third-party service providers to
-                operate our business — for example, to send transactional
-                emails, schedule consultations, and manage customer
-                relationships. These providers only receive the information
-                needed to perform their function and are not permitted to
-                use it for their own marketing purposes. [List of specific
-                third-party services to be added here once finalized.]
+                We keep cookies to a minimum. Today the site uses essential
+                browser storage needed for it to work correctly (for example,
+                remembering your theme preference) rather than advertising
+                cookies. We may add privacy-friendly analytics in the future to
+                understand which pages are useful; if we do, we will update this
+                policy. You can adjust your browser settings to refuse cookies,
+                though some parts of the site may not function as intended.
               </p>
             </section>
 
@@ -109,25 +95,76 @@ export default function PrivacyPolicyPage() {
                 How We Use Your Information
               </h2>
               <p className="mt-3 leading-relaxed">
-                We use the information we collect to respond to your
-                inquiries, provide and improve our services, send you
-                requested communications, and — only where you&apos;ve given
-                us permission — send occasional updates about our services.
-                We do not sell your personal information to third parties.
+                We use the information you provide to respond to your enquiry,
+                prepare proposals and quotes, deliver and improve our services,
+                and — only where you&apos;ve asked us to — send you occasional
+                updates. We do not sell or rent your personal information to
+                anyone, and we do not use it for third-party advertising.
               </p>
             </section>
 
             <section>
               <h2 className="font-display text-2xl font-bold text-navy">
-                Data Retention &amp; Security
+                Third-Party Providers
               </h2>
               <p className="mt-3 leading-relaxed">
-                We retain the information you provide for as long as
-                necessary to fulfill the purposes described in this policy,
-                or as required by law. We use reasonable administrative and
-                technical safeguards to protect your information, though no
-                method of storage or transmission over the internet is 100%
-                secure.
+                We rely on a small set of trusted service providers to run our
+                business. They only receive the information needed to perform
+                their function on our behalf and are not permitted to use it for
+                their own marketing. These currently include:
+              </p>
+              <ul className="mt-3 list-disc space-y-1.5 pl-5 leading-relaxed">
+                <li>
+                  <strong className="text-navy">Resend</strong> — delivers the
+                  notification and confirmation emails triggered by our forms.
+                </li>
+                <li>
+                  <strong className="text-navy">MongoDB Atlas</strong> — hosts
+                  the database that stores your submitted lead and backs this
+                  site.
+                </li>
+                <li>
+                  <strong className="text-navy">Cal.com</strong> — powers
+                  consultation scheduling when you book a call.
+                </li>
+                <li>
+                  <strong className="text-navy">Cloudinary</strong> — hosts
+                  images and media shown on the site.
+                </li>
+              </ul>
+              <p className="mt-3 leading-relaxed">
+                We may add or change providers over time and will keep this list
+                current. We may also disclose information if required by law or
+                to protect our rights.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-display text-2xl font-bold text-navy">
+                Data Retention
+              </h2>
+              <p className="mt-3 leading-relaxed">
+                We keep the information you submit for as long as it&apos;s
+                needed to respond to you and, if we begin working together, for
+                the duration of our relationship plus any period required for
+                legal, accounting, or record-keeping purposes. When it&apos;s no
+                longer needed, we delete it or remove details that identify you.
+                You can ask us to delete your information sooner at any time (see
+                &quot;Your Rights &amp; Choices&quot; below).
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-display text-2xl font-bold text-navy">
+                Security
+              </h2>
+              <p className="mt-3 leading-relaxed">
+                We use reasonable administrative and technical safeguards to
+                protect your information, including access controls and
+                encrypted connections. No method of transmission or storage over
+                the internet is completely secure, so while we work hard to
+                protect your information, we can&apos;t guarantee absolute
+                security.
               </p>
             </section>
 
@@ -136,11 +173,11 @@ export default function PrivacyPolicyPage() {
                 Your Rights &amp; Choices
               </h2>
               <p className="mt-3 leading-relaxed">
-                Depending on where you live, you may have the right to
-                request access to, correction of, or deletion of your
-                personal information. To make a request, contact us using the
-                details below and we&apos;ll respond within a reasonable
-                timeframe.
+                Depending on where you live, you may have the right to access,
+                correct, or delete the personal information we hold about you, or
+                to object to certain uses of it. To make a request — or to opt
+                out of any updates we send — just email us using the address
+                below and we&apos;ll respond within a reasonable timeframe.
               </p>
             </section>
 
@@ -149,9 +186,9 @@ export default function PrivacyPolicyPage() {
                 Children&apos;s Privacy
               </h2>
               <p className="mt-3 leading-relaxed">
-                Our site and services are intended for business audiences and
-                are not directed at children. We do not knowingly collect
-                personal information from children.
+                Our site and services are intended for businesses and are not
+                directed at children. We do not knowingly collect personal
+                information from children.
               </p>
             </section>
 
@@ -160,9 +197,9 @@ export default function PrivacyPolicyPage() {
                 Changes to This Policy
               </h2>
               <p className="mt-3 leading-relaxed">
-                We may update this Privacy Policy from time to time. Any
-                changes will be posted on this page with a revised effective
-                date.
+                We may update this Privacy Policy as our practices evolve. When
+                we do, we&apos;ll revise the effective date at the top of this
+                page. Significant changes may be highlighted on the site.
               </p>
             </section>
 
@@ -171,8 +208,8 @@ export default function PrivacyPolicyPage() {
                 Contact Us
               </h2>
               <p className="mt-3 leading-relaxed">
-                If you have questions about this Privacy Policy or how we
-                handle your information, contact us at{" "}
+                If you have questions about this Privacy Policy or how we handle
+                your information, contact us at{" "}
                 <a
                   href={`mailto:${contactInfo.email}`}
                   className="font-semibold text-teal hover:text-bright-cyan"

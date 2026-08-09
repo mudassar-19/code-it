@@ -6,7 +6,6 @@
 
 import type { Metadata } from "next";
 import { brand } from "@/lib/theme";
-import { contactInfo } from "@/lib/contact";
 
 // PLACEHOLDER until a real production domain exists — see .env.example.
 // No trailing slash, so callers can safely do `${SITE_URL}${path}`.
@@ -18,19 +17,14 @@ export function absoluteUrl(path: string): string {
   return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-// contactInfo.socials are still "#" placeholders (see lib/contact.ts) until
-// real profile URLs exist — filtered out here so Organization JSON-LD's
-// `sameAs` never advertises a broken link. Starts empty; fills in
-// automatically once real URLs are added in one place (lib/contact.ts).
-export const ORGANIZATION_SAME_AS: string[] = contactInfo.socials
-  .map((social): string => social.href)
-  .filter((href) => Boolean(href) && href !== "#");
-
+// No `sameAs` — there are no real social profiles to cite yet, so the field
+// is omitted from the Organization schema entirely rather than pointing at
+// placeholder links. Add one back here (and in organizationJsonLd below) once
+// real profile URLs exist.
 export const ORGANIZATION = {
   name: brand.name,
   url: SITE_URL,
   logo: absoluteUrl("/images/codeit-web-logo.png"),
-  sameAs: ORGANIZATION_SAME_AS,
 } as const;
 
 export const DEFAULT_OG_IMAGE_ALT = `${brand.name} — full-spectrum technology and growth partner`;
@@ -82,40 +76,6 @@ export const INDUSTRY_SEO: Record<string, { title: string; description: string }
   },
 };
 
-// Trims to a word boundary at/under maxLength and appends an ellipsis —
-// used for the ~96 auto-generated portfolio project pages below, where
-// hand-tuning every title/description to an exact character count isn't
-// practical (see projectPageTitle/projectPageDescription for why).
-function truncateAtWord(text: string, maxLength: number): string {
-  if (text.length <= maxLength) return text;
-  const cut = text.slice(0, maxLength - 1);
-  const lastSpace = cut.lastIndexOf(" ");
-  return `${cut.slice(0, lastSpace > 0 ? lastSpace : maxLength - 1)}…`;
-}
-
-// Portfolio project titles are real, already-descriptive long-tail content
-// ("AI-Powered Listing Assistant for a Multi-Agent Real Estate Brokerage")
-// — several range well past 60 characters on their own. Forcing every one
-// into a rigid 50-60 window would mean mangling good, specific titles, so
-// instead: keep the full title (plus " | CodeIT" when it still fits a
-// reasonable ~65-char budget), and only truncate the rare outliers that
-// exceed that on their own.
-export function projectPageTitle(projectTitle: string): string {
-  const withSuffix = `${projectTitle} | CodeIT`;
-  if (withSuffix.length <= 65) return withSuffix;
-  if (projectTitle.length <= 65) return projectTitle;
-  return truncateAtWord(projectTitle, 65);
-}
-
-// Each project's `description` field is already 3-5 natural, keyword-rich
-// sentences (see lib/portfolio.ts) — truncating that to ~157 characters at
-// a word boundary reliably lands in or very near the 140-160 target
-// without needing to programmatically stitch together new sentences (and
-// risk grammatically-broken output across ~96 varied projects).
-export function projectPageDescription(fullDescription: string): string {
-  return truncateAtWord(fullDescription, 157);
-}
-
 // Every page builds its metadata through this one function so title/
 // description/canonical/OG/Twitter always stay in sync with each other —
 // no page sets a canonical without a matching openGraph.url, etc.
@@ -161,7 +121,6 @@ export function organizationJsonLd() {
     name: ORGANIZATION.name,
     url: ORGANIZATION.url,
     logo: ORGANIZATION.logo,
-    ...(ORGANIZATION.sameAs.length > 0 ? { sameAs: ORGANIZATION.sameAs } : {}),
   };
 }
 
