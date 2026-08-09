@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProductDetail from "@/components/ProductDetail";
 import JsonLd from "@/components/JsonLd";
-import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
+import {
+  breadcrumbJsonLd,
+  buildMetadata,
+  creativeWorkJsonLd,
+  projectMetaDescription,
+  projectPageTitle,
+} from "@/lib/seo";
 import { getPublishedProductBySlug } from "@/lib/products";
 
 type PortfolioProjectPageProps = { params: { slug: string } };
@@ -31,8 +37,8 @@ export async function generateMetadata({
   }
 
   return buildMetadata({
-    title: `${project.title} | CodeIT`,
-    description: project.shortDesc,
+    title: projectPageTitle(project.title),
+    description: projectMetaDescription(project.shortDesc),
     path: `/portfolio/${project.slug}`,
   });
 }
@@ -57,6 +63,15 @@ export default async function PortfolioProjectPage({
           { name: "Portfolio", path: "/portfolio" },
           { name: project.title, path: `/portfolio/${project.slug}` },
         ])}
+      />
+      <JsonLd
+        data={creativeWorkJsonLd({
+          title: project.title,
+          description: project.shortDesc,
+          path: `/portfolio/${project.slug}`,
+          imageUrl: project.coverImageUrl,
+          categoryName: project.categoryName,
+        })}
       />
       <ProductDetail product={project} />
     </main>

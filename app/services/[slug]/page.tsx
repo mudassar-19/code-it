@@ -24,10 +24,13 @@ export function generateMetadata({ params }: IndustryPageProps): Metadata {
   const seo = INDUSTRY_SEO[params.slug];
 
   if (!industry || !seo) {
+    // Only reachable for a slug that isn't one of our industries (the page
+    // itself 404s below) — give it its own generic-but-relevant metadata
+    // rather than borrowing the homepage's.
     return buildMetadata({
-      title: "CodeIT | Web, Mobile & AI Software Development Agency",
+      title: "Industry Solutions | CodeIT — Web, Mobile & AI Development",
       description:
-        "CodeIT is a full-spectrum technology partner building web, mobile, and AI-powered software for growing businesses.",
+        "Explore CodeIT's web, mobile, and AI development services tailored to the industries we serve.",
       path: "/",
     });
   }

@@ -4,7 +4,7 @@ import { contactInfo } from "@/lib/contact";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Terms of Service | CodeIT",
+  title: "Terms of Service | CodeIT — Website & Service Terms",
   description:
     "The terms that govern your use of the CodeIT website — acceptable use, intellectual property, how project engagements are handled, and limitations of liability.",
   path: "/terms",

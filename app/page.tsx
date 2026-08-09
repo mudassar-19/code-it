@@ -10,7 +10,7 @@ import Contact from "@/sections/Contact";
 import ShapeDivider from "@/components/ShapeDivider";
 import JsonLd from "@/components/JsonLd";
 import { themeColors } from "@/lib/theme";
-import { buildMetadata, organizationJsonLd } from "@/lib/seo";
+import { buildMetadata, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "CodeIT | Web, Mobile & AI Software Development Agency",
@@ -28,6 +28,7 @@ export default function HomePage() {
   return (
     <main>
       <JsonLd data={organizationJsonLd()} />
+      <JsonLd data={websiteJsonLd()} />
       <Hero />
       <ShapeDivider variant="wave" bgColor={themeColors.background} fillColor={themeColors.navyDeep} />
       <About />

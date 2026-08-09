@@ -6,7 +6,6 @@ import {
   sendInternalLeadNotification,
   sendLeadConfirmationEmail,
 } from "@/lib/email";
-import { syncLeadToGoHighLevel } from "@/lib/ghlSync";
 import { prisma } from "@/lib/prisma";
 
 export const runtime = "nodejs";
@@ -118,22 +117,6 @@ export async function POST(request: Request) {
       const step = resultIndex === 0 ? "internal notification" : "confirmation";
       console.error(`[api/lead] Failed to send ${step} email:`, result.reason);
     }
-  });
-
-  // 4. Outbound GoHighLevel sync — optional, fire-and-forget, never blocks
-  // the response. See lib/ghlSync.ts for the GHL-side setup (an Inbound
-  // Webhook trigger) and why this can never affect whether the lead counts
-  // as saved.
-  syncLeadToGoHighLevel(leadId ?? "unknown", {
-    name: data.fullName,
-    email: data.email,
-    phone: data.phone,
-    businessName: data.businessName,
-    industry: industryLabel,
-    message: data.description,
-    source: data.source,
-  }).catch((error) => {
-    console.error("[api/lead] GHL sync threw unexpectedly:", error);
   });
 
   return NextResponse.json({ success: true, leadId }, { status: 201 });

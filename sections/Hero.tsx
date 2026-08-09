@@ -100,9 +100,9 @@ export default function Hero() {
               variants={itemVariants}
               className="mx-auto mt-6 max-w-2xl text-lg text-navy/70 dark:text-text-secondary sm:text-xl lg:mx-0"
             >
-              CodeIT is a full-spectrum technology and growth
-              partner — building the web, mobile, AI, and cloud systems that
-              turn ambitious businesses into market leaders.
+              CodeIT is a custom software development agency and growth
+              partner — building web, mobile, AI-integration, and cloud systems
+              that turn ambitious businesses into market leaders.
             </motion.p>
 
             <motion.div

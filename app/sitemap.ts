@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { industries } from "@/lib/industries";
 import { SITE_URL } from "@/lib/seo";
-import { getPublishedProductSlugs } from "@/lib/products";
+import { getPublishedProductSitemapEntries } from "@/lib/products";
 
 // Static pages + every industry route + every published portfolio project,
 // with the project slugs read live from the database (the single source of
@@ -23,13 +23,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.9,
   }));
 
-  // Published portfolio projects from the database. getPublishedProductSlugs()
-  // swallows errors and returns [] so a DB hiccup can never fail sitemap
-  // generation.
-  const projectSlugs = await getPublishedProductSlugs();
-  const portfolioRoutes: MetadataRoute.Sitemap = projectSlugs.map((slug) => ({
-    url: `${SITE_URL}/portfolio/${slug}`,
-    lastModified: now,
+  // Published portfolio projects from the database, each with its real
+  // `updatedAt`. getPublishedProductSitemapEntries() swallows errors and
+  // returns [] so a DB hiccup can never fail sitemap generation.
+  const projects = await getPublishedProductSitemapEntries();
+  const portfolioRoutes: MetadataRoute.Sitemap = projects.map((project) => ({
+    url: `${SITE_URL}/portfolio/${project.slug}`,
+    lastModified: project.updatedAt,
     changeFrequency: "monthly",
     priority: 0.7,
   }));

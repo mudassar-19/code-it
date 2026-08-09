@@ -20,11 +20,20 @@ const nextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
-  // The public catalog was consolidated onto /portfolio (backed by real
-  // database Products). The old /products routes 308-redirect there so any
-  // indexed links keep their SEO equity and never 404.
   async redirects() {
     return [
+      // Canonical host: permanently send the apex (non-www) host to www so the
+      // two hostnames never compete for indexing, regardless of DNS/hosting
+      // config. 308 (permanent) with an absolute destination for the host swap.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "codeitdevs.com" }],
+        destination: "https://www.codeitdevs.com/:path*",
+        permanent: true,
+      },
+      // The public catalog was consolidated onto /portfolio (backed by real
+      // database Products). The old /products routes 308-redirect there so any
+      // indexed links keep their SEO equity and never 404.
       { source: "/products", destination: "/portfolio", permanent: true },
       {
         source: "/products/:slug",

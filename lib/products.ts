@@ -119,15 +119,17 @@ export async function getPublishedProductBySlug(
   };
 }
 
-// Just the slugs of published products — for the sitemap. Returns [] on any
-// error so a DB hiccup at build time never fails `next build`.
-export async function getPublishedProductSlugs(): Promise<string[]> {
+// Published product slugs + their last-modified dates — for the sitemap, so
+// each /portfolio/{slug} entry reports its real `updatedAt` rather than build
+// time. Returns [] on any error so a DB hiccup can't fail `next build`.
+export async function getPublishedProductSitemapEntries(): Promise<
+  { slug: string; updatedAt: Date }[]
+> {
   try {
-    const rows = await prisma.product.findMany({
+    return await prisma.product.findMany({
       where: { status: "published" },
-      select: { slug: true },
+      select: { slug: true, updatedAt: true },
     });
-    return rows.map((row) => row.slug);
   } catch {
     return [];
   }

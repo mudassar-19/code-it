@@ -146,14 +146,14 @@ export default function ProductDetail({
                 Gallery
               </h2>
               <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {product.galleryUrls.map((url) => (
+                {product.galleryUrls.map((url, index) => (
                   <div
                     key={url}
                     className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-light-teal/60 bg-card shadow-soft"
                   >
                     <Image
                       src={url}
-                      alt=""
+                      alt={`${product.title} — screenshot ${index + 1}`}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover"
