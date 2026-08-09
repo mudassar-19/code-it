@@ -176,7 +176,7 @@ live in `lib/seo.ts`.
   (`lib/contact.ts`). Don't add LocalBusiness without an address.
 - ❌ **No `Review`/`AggregateRating`** — correct, because **no real reviews exist**
   in the codebase. Do **not** fabricate any.
-- 💡 Optional: add `contactPoint` (the real email `haroonrauf94@gmail.com`) to
+- 💡 Optional: add `contactPoint` (the real email `info@codeitdevs.com`) to
   Organization for richer entity data.
 
 ### Validation vs. removed data ✅ (mostly clean)

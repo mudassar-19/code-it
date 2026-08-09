@@ -7,5 +7,5 @@ export const contactInfo = {
   // Click-to-chat WhatsApp link (wa.me expects the number with no +, spaces,
   // or dashes).
   whatsapp: "https://wa.me/923042496160",
-  email: "haroonrauf94@gmail.com",
+  email: "info@codeitdevs.com",
 } as const;
